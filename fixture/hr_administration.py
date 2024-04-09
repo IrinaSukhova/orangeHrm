@@ -18,36 +18,20 @@ class HrAdministration:
         self.wd = wd
 
     def click_add_user(self):
-        self.step.specified_element_is_present(self.add_user_button, 30)
+        self.step.wait_for_element(self.first_table_row, 40)
         self.step.click_on_element(self.add_user_button)
-        self.step.wait_for_element(self.save_button)
 
-
-    def get_filtered_usernames(self):
-        return self.step.get_elements_texts(self.filtered_usernames)
-
-    def get_filtered_user_role(self):
-        return self.step.get_elements_texts(self.filtered_user_roles)
-
-    def get_filter_no_record_message(self):
-        self.step.specified_element_is_present(self.filter_no_records_message,2)
-        return self.step.get_element_text(self.filter_no_records_message)
-
-    def make_sure_that_user_not_found(self):
-        self.step.specified_element_is_not_present(self.filter_no_records_message, 5)
-        return self.step.specified_element_is_present(self.filtered_usernames)
+    def click_on_filter(self):
+        self.step.wait_for_element(self.first_table_row, 40)
+        self.step.click_on_element(self.filter_users_button, 1)
 
     def get_list_of_user_names(self):
         time.sleep(3)
         return self.step.get_elements_texts(self.filtered_usernames)
 
-    def click_filter(self):
-        self.step.wait_for_element(self.first_table_row,40)
-        self.step.click_on_element(self.filter_users_button, 1)
-
     def get_filter_no_records_message_text(self):
         return self.step.get_element_text(self.filter_no_records_message)
 
     def is_list_of_users_displayed(self):
-        self.step.specified_element_is_not_present(self.filter_no_records_message, 5)
+        self.step.specified_element_is_not_present(self.filter_no_records_message,5)
         return self.step.specified_element_is_present(self.filtered_usernames)
