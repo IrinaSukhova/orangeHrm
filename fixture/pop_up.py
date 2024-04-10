@@ -1,10 +1,12 @@
+import time
+
 from fixture.step import StepHelper
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class PopUp:
     user_name_field = '#systemuser_uname_filter'
-    employee_name_field = '#selectedEmployee_value'
+    employee_name_field = '#employee_name_filter_value'
     password_field = '#password'
     confirm_password_field = '#confirmpassword'
     save_button = '#modal-save-button'
@@ -20,6 +22,23 @@ class PopUp:
     password_error_massage = '//input[@id="password"]/following-sibling::span'
     confirm_password_error_massage = '//input[@id="confirmpassword"]/following-sibling::span'
     strength_indicator = '.password-strength-check'
+    autocomplete_dropdown = '#employee_name_filter_dropdown span.angucomplete-title'
+    message_no_results = "//div[contains(@id, 'employee_name_filter_dropdown') and not(contains(@class, 'ng-hide'))]//div[contains(@class, 'angucomplete-searching') and not(contains(@class, 'ng-hide')) and text()='No results found']"
+    ess_role_input_field = '#essroles_inputfileddiv input'
+    ess_role_dropdown_values = '#essroles_inputfileddiv li'
+    supervisor_role_input_field = '#supervisorroles_inputfileddiv input'
+    supervisor_role_dropdown_values = '#supervisorroles_inputfileddiv li'
+    location_input_field = '#location_inputfileddiv input'
+    location_dropdown_values = '#location_inputfileddiv li'
+    admin_role_input_field = '#adminroles_inputfileddiv input'
+    admin_role_dropdown_values = '#adminroles_inputfileddiv li'
+    status_input_field = '#status_inputfileddiv input'
+    status_dropdown_values = '#status_inputfileddiv li'
+    drop_down_is_expanded = 'input[class="select-dropdown active"]'
+    filter_reset_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Reset"]'
+    filter_cancel_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Cancel"]'
+    searching_text = '//div[@id="employee_name_filter_dropdown"]/div[text()="Searching..."]'
+    list_of_found_employee_names = '#employee_name_filter_dropdown div[ng-repeat="result in results"] span[class="angucomplete-title"]'
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -30,6 +49,9 @@ class PopUp:
 
     def set_employee_name(self, text):
         self.step.input_text(self.employee_name_field, text)
+        self.step.specified_element_is_not_present(self.searching_text, 6)
+        if self.step.specified_element_is_present(self.message_no_results, 3) == False:
+            self.step.click_element_containing_text(self.list_of_found_employee_names, text)
 
     def set_password(self, text):
         self.step.click_on_element(self.password_field)
@@ -56,3 +78,73 @@ class PopUp:
 
     def get_confirm_password_error(self):
         return self.step.get_element_text(self.confirm_password_error_massage)
+
+    def get_autocomplete_names(self):
+        return self.step.get_elements_texts(self.autocomplete_dropdown)
+
+    def get_no_results_message(self):
+        return self.step.get_element_text(self.message_no_results)
+
+    def get_ess_role_dropdown_values(self):
+        return self.step.get_elements_texts(self.ess_role_dropdown_values)
+
+    def get_admin_role_dropdown_values(self):
+        return self.step.get_elements_texts(self.admin_role_dropdown_values)
+
+    def get_supervisor_role_dropdown_values(self):
+        return self.step.get_elements_texts(self.supervisor_role_dropdown_values)
+
+    def get_status_dropdown_values(self):
+        return self.step.get_elements_texts(self.status_dropdown_values)
+
+    def get_location_dropdown_values(self):
+        return self.step.get_elements_texts(self.location_dropdown_values)
+
+    def get_ess_role_selected_dropdown_value(self):
+        return self.step.get_element_attribute_value(self.ess_role_input_field, 'value', True)
+
+    def get_admin_role_selected_dropdown_value(self):
+        return self.step.get_element_attribute_value(self.admin_role_input_field, 'value', True)
+
+    def get_supervisor_role_selected_dropdown_value(self):
+        return self.step.get_element_attribute_value(self.supervisor_role_input_field, 'value', True)
+
+    def get_status_selected_dropdown_value(self):
+        return self.step.get_element_attribute_value(self.status_input_field, 'value', True)
+
+    def get_location_selected_dropdown_value(self):
+        return self.step.get_element_attribute_value(self.location_input_field, 'value', True)
+
+    def set_ess_role_input_dropdown(self, text):
+        self.step.click_on_element(self.ess_role_input_field)
+        time.sleep(0.5)
+        self.step.click_element_by_text(self.ess_role_dropdown_values, text)
+
+    def set_admin_role_input_dropdown(self, text):
+        self.step.click_on_element(self.admin_role_input_field)
+        time.sleep(0.5)
+        self.step.click_element_by_text(self.admin_role_dropdown_values, text)
+
+    def set_supervisor_role_dropdown(self, text):
+        self.step.click_on_element(self.supervisor_role_input_field)
+        time.sleep(0.5)
+        self.step.click_element_by_text(self.supervisor_role_dropdown_values, text)
+
+    def set_status_input_dropdown(self, text):
+        self.step.click_on_element(self.status_input_field)
+        time.sleep(0.5)
+        self.step.click_element_by_text(self.status_dropdown_values, text)
+
+    def set_location_input_dropdown(self, text):
+        self.step.click_on_element(self.location_input_field)
+        time.sleep(0.5)
+        self.step.click_element_by_text(self.location_dropdown_values, text)
+
+    def click_on_filter_reset_button(self):
+        self.step.click_on_element(self.filter_reset_button)
+
+    def click_on_filter_cancel_button(self):
+        self.step.click_on_element(self.filter_cancel_button)
+
+    def wait_filter_pop_up_stop_displayed(self):
+        self.step.specified_element_is_not_present(self.filter_popup_table)

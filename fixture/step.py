@@ -122,7 +122,7 @@ class StepHelper:
         for element in elements:
             self.wd.execute_script(
                 "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });", element)
-            text = element.text.strip()
+            text = element.get_attribute("textContent").strip()
             texts.append(text)
         return texts
 
@@ -133,3 +133,24 @@ class StepHelper:
             if element.text == text:
                 element.click()
                 break
+
+    def click_element_containing_text(self, locator, text):
+        """Clicks on an element containing the specified text, case-insensitively."""
+        elements = self.get_list_of_elements(locator)
+        text_lower = text.lower()  # Convert the search text to lowercase for case-insensitive comparison
+        clicked = False
+
+        for element in elements:
+            element_text = element.text.lower()  # Convert each element's text to lowercase
+            if text_lower in element_text:
+                print(f"\nAttempting to click on element containing text: '{text}' with actual text: '{element.text}'")
+                try:
+                    element.click()
+                    clicked = True
+                    print("\nClick successful.")
+                    break  # Exit the loop after clicking
+                except Exception as e:
+                    print(f"Failed to click on the element. Error: {e}")
+
+        if not clicked:
+            print(f"No clickable element found containing text: '{text}'")
