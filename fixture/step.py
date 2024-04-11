@@ -35,6 +35,18 @@ class StepHelper:
             return False
         return True
 
+    def wait_for_element(self, locator, wait_time=10):
+        # Waits for a specified element to be visible.
+        element = WebDriverWait(self.wd, wait_time).until(
+            EC.visibility_of_element_located((self.get_how(locator), locator)))
+        return element
+
+    def specified_element_is_not_present(self, locator, waitingTime=3):
+        # Waits to ensure a specified element is not present or becomes invisible.
+        time.sleep(1)
+        WebDriverWait(self.wd, waitingTime).until(
+            EC.invisibility_of_element_located((self.get_how(locator), locator)))
+
     def click_on_element(self, locator, pause_before_click=0.5, scrollInToView=False):
         # Clicks on a specified element, optionally scrolling into view and pausing before clicking.
         WebDriverWait(self.wd, 10).until(
@@ -82,18 +94,6 @@ class StepHelper:
                 "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });", element)
             time.sleep(2)
         return element.get_attribute(attribute)
-
-    def specified_element_is_not_present(self, locator, waitingTime=3):
-        # Waits to ensure a specified element is not present or becomes invisible.
-        time.sleep(1)
-        WebDriverWait(self.wd, waitingTime).until(
-            EC.invisibility_of_element_located((self.get_how(locator), locator)))
-
-    def wait_for_element(self, locator, wait_time=10):
-        # Waits for a specified element to be visible.
-        element = WebDriverWait(self.wd, wait_time).until(
-            EC.visibility_of_element_located((self.get_how(locator), locator)))
-        return element
 
     def jsXpathClick(self, locator):
         # Performs a click on an element using JavaScript, specifically for XPATH locators.
