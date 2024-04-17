@@ -38,5 +38,5 @@ def test_lesson_17_test_drop_down_select(app):
 def test_lesson_17_2test_upload_file(app):
     app.demonstrationAppDemoQa.openUrl()
     app.demonstrationAppDemoQa.go_to_side_menu_section("Elements", "Upload and Download")
-    app.demonstrationAppDemoQa.upload_file('files/test_uploadHome.txt')
+    app.demonstrationAppDemoQa.upload_file('C:/Users/isukhova/PycharmProjects/orangeHrm/files/test_uploadHome.txt')
         # Create some file in your project and upload it using upload method from previous example
