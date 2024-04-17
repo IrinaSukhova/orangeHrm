@@ -126,11 +126,14 @@ class StepHelper:
             texts.append(text)
         return texts
 
-    def click_element_by_text(self, locator, text):
+    def click_element_by_text(self, locator, text, scrollInToView=False):
         # Clicks on an element within a list that matches the specified text.
         elements = self.get_list_of_elements(locator)
         for element in elements:
             if element.text == text:
+                if scrollInToView:
+                    self.wd.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)  # используем метод скроллинга, описанный выше
+                    time.sleep(1)
                 element.click()
                 break
 
@@ -154,3 +157,9 @@ class StepHelper:
 
         if not clicked:
             print(f"No clickable element found containing text: '{text}'")
+
+    def scroll_element_into_center(self, locator):
+        element = WebDriverWait(self.wd, 10).until(
+            EC.visibility_of_element_located((self.get_how(locator), locator)))
+        self.wd.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+        time.sleep(1)
