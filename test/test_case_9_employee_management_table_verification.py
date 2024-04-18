@@ -3,6 +3,15 @@ def test_case_9_employee_management_table_verification(app):
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
+    app.orangeHrm.employeeManagement.click_home()
+    app.orangeHrm.employeeManagement.wait_for_table()
+    a = app.orangeHrm.employeeManagement.table.get_column_data('employee_id')
+    b = app.orangeHrm.employeeManagement.table.get_column_data('name')
+    c = app.orangeHrm.employeeManagement.table.get_column_data('job title')
+    d = app.orangeHrm.employeeManagement.table.get_column_data('employment status')
+
+
+    
 
     # 1 Create a new object of the table class inside the employee management component (based on the example from hr_administration).
     # 2 Find selectors: For list of rows and list of column elements (Employee Id, Name, Job Title, Employment Status).

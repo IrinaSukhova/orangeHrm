@@ -11,6 +11,13 @@ class EmployeeManagement:
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
         self.wd = wd
+        self.table2 = Table(step,
+                           row_selector='#employeeListTable tr',
+                           column_selectors={'employee_id': 'td:nth-child(2)',
+                                             'name': 'td:nth-child(3)',
+                                             'job title': 'td:nth-child(4)',
+                                             'employment status': 'td:nth-child(5)'
+                                             })
 
     def click_home(self):
         self.step.click_on_element(self.home_button)
