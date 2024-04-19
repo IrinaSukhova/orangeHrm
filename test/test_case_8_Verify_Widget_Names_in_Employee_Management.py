@@ -9,7 +9,7 @@
 # 6. Verify that the list of retrieved widget names matches the expected list.
 # Expected Result:
 # The 'get_widget_names' method should return an accurate list of widget names that are present within the Employee Management component.
-
+import time
 
 # Test Case 8_1: Verify Retrieval of Widget Names in Employee Management Component inside the Configuration
 # Test Name: Test_Get_Widget_Names_Employee_Management Configuration section
@@ -26,7 +26,7 @@
 # The 'get_widget_names' method should return an accurate list of widget names from the side menu. Then assert it with the expected one.
 
 list_of_expected_widgets = ['Quick Access', 'Time At Work', 'Employees on Leave Today', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', "Current Year's Leave Taken by Department", 'Buzz Latest Posts', 'Leave Taken on Each Day of the Week Over Time', 'Leave Scheduled in Each Month', 'Leave Taken on Each Calendar Month Over the Years', 'Headcount by Location', 'Annual Basic Payment by Location', 'My Actions']
-list_of_expected_configurations = ['Optional Fields', 'Custom Field Sections', 'Reporting Methods', 'Add Employee Wizard', 'Termination Reasons', 'Document Templates', 'Work Schedules', 'Job and Salary Events']
+list_of_expected_configurations = ['My Actions', 'Quick Access', 'Employees on Leave Today', 'Time At Work', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', 'Buzz Latest Posts', 'Current Year`s Leave Taken by Department', 'Leave Taken on Each Calendar Month Over the Years', 'Leave Scheduled in Each Month', 'Leave Taken on Each Day of the Week Over Time', 'Headcount by Location', 'Annual Basic Payment by Location']
 
 def test_case_8_verify_retrieval_of_widget_names_in_employee_management_component(app):
     app.orangeHrm.openUrl()
@@ -43,4 +43,7 @@ def test_case_8_1_verify_retrieval_of_widget_names_in_employee_management_compon
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.orangeHrm.employeeManagement.click_home()
-    app.assert_that(app.orangeHrm.employeeManagement.get_widgets_headers().sort()).is_equal_to(list_of_expected_configurations.sort())
+    time.sleep(10)
+    app.orangeHrm.employeeManagement.click_gear_button()
+    app.orangeHrm.employeeManagement.click_my_widgets_tab()
+    app.assert_that(app.orangeHrm.employeeManagement.get_widgets_names().sort()).is_equal_to(list_of_expected_configurations.sort())

@@ -68,6 +68,5 @@ class DemonstrationAppDemoQa:
     def upload_file(self, file_path):
         self.step.scroll_element_into_center(self.file_upload_input)
         file_input = self.wd.find_element(By.CSS_SELECTOR, self.file_upload_input)
-        self.step.click_on_element(self.file_upload_input)
         time.sleep(5)
         file_input.send_keys(file_path)
