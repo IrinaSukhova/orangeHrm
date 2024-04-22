@@ -1,17 +1,27 @@
+#import time
+
+list_of_expected_employee_id = ['1061']
+list_of_expected_employee_name = ['Mazie Abraham']
+list_of_employment_status = ['Full-Time Permanent']
+
+
 def test_case_9_employee_management_table_verification(app):
     app.orangeHrm.openUrl()
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
-    app.orangeHrm.employeeManagement.click_home()
-    app.orangeHrm.employeeManagement.wait_for_table()
+    #app.orangeHrm.employeeManagement.wait_for_table1()
     a = app.orangeHrm.employeeManagement.table.get_column_data('employee_id')
-    b = app.orangeHrm.employeeManagement.table.get_column_data('name')
-    c = app.orangeHrm.employeeManagement.table.get_column_data('job title')
-    d = app.orangeHrm.employeeManagement.table.get_column_data('employment status')
+    b = app.orangeHrm.employeeManagement.table.get_column_data('employee_name')
+    c = app.orangeHrm.employeeManagement.table.get_column_data('job_title')
+    d = app.orangeHrm.employeeManagement.table.get_column_data('employment_status')
+    e = app.orangeHrm.employeeManagement.table[1]['employee_id']
+    f = app.orangeHrm.employeeManagement.table[0]['employee_name']
+    g = app.orangeHrm.employeeManagement.table[4]['employment_status']
+    app.assert_that(e).is_equal_to('1061')
+    app.assert_that(f).is_equal_to('Mazie Abraham')
+    app.assert_that(g).is_equal_to('Full-Time Permanent')
 
-
-    
 
     # 1 Create a new object of the table class inside the employee management component (based on the example from hr_administration).
     # 2 Find selectors: For list of rows and list of column elements (Employee Id, Name, Job Title, Employment Status).
@@ -25,6 +35,9 @@ def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
+    app.orangeHrm.employeeManagement.click_on_filter_button()
+
+
 
     # TODO: Click on the filter button in the Employee Management section
     # TODO: In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'
