@@ -40,6 +40,11 @@ class PopUp:
     searching_text = '//div[@id="employee_name_filter_dropdown"]/div[text()="Searching..."]'
     list_of_found_employee_names = '#employee_name_filter_dropdown div[ng-repeat="result in results"] span[class="angucomplete-title"]'
 
+    employment_status_drop_down = '//label[text()="Employment Status"]/preceding-sibling::div//input'
+    list_of_drop_down_values = 'ul[id^="select-options"][style*=display: block"] li span'
+    location_drop_down = '//label[text()="Location"]/preceding-sibling::div//input'
+
+
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
         self.wd = wd
@@ -148,3 +153,13 @@ class PopUp:
 
     def wait_filter_pop_up_stop_displayed(self):
         self.step.specified_element_is_not_present(self.filter_popup_table)
+
+    def set_employment_status(self, text):
+        self.step.click_on_element(self.employment_status_drop_down)
+        time.sleep(1)
+        self.step.click_element_by_text(self.list_of_drop_down_values, text)
+
+    def set_location(self, text):
+        self.step.click_on_element(self.location_drop_down)
+        time.sleep(1)
+        self.step.click_element_by_text(self.list_of_drop_down_values, text, True)

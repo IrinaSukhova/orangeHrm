@@ -1,4 +1,5 @@
 #import time
+import time
 
 list_of_expected_employee_id = ['1061']
 list_of_expected_employee_name = ['Mazie Abraham']
@@ -35,7 +36,11 @@ def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
+    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
     app.orangeHrm.employeeManagement.click_on_filter_button()
+    app.orangeHrm.popUp.set_employment_sestatus('Full-Time Contract')
+    app.orangeHrm.popUp.set_location('Canada')
+    time.sleep(20)
 
 
 

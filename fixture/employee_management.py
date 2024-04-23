@@ -12,7 +12,7 @@ class EmployeeManagement:
     list_widgets_names = "span[class='oxd-switch-label']"
     first_table_row = "tbody tr:nth-child(1)"
     list_employee_button = "//a[@class='top-level-menu-item active']"
-    filter_button = "a[class='employee-navbar-button action-icon']"
+    filter_button = "li[class='tooltipped center-align']"
 
 
     def __init__(self, step: StepHelper, wd: WebDriver):
@@ -45,4 +45,7 @@ class EmployeeManagement:
         self.step.wait_for_element(self.first_table_row, 40)
 
     def click_on_filter_button(self):
-        self.step.click_on_element(self.filter_button)
+        self.step.click_on_element(self.filter_button, 1)
+
+    def wait_for_loading_bar_gone(self):
+        self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)
