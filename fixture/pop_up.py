@@ -39,10 +39,11 @@ class PopUp:
     filter_cancel_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Cancel"]'
     searching_text = '//div[@id="employee_name_filter_dropdown"]/div[text()="Searching..."]'
     list_of_found_employee_names = '#employee_name_filter_dropdown div[ng-repeat="result in results"] span[class="angucomplete-title"]'
-
+    list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
     employment_status_drop_down = '//label[text()="Employment Status"]/preceding-sibling::div//input'
-    list_of_drop_down_values = 'ul[id^="select-options"][style*=display: block"] li span'
     location_drop_down = '//label[text()="Location"]/preceding-sibling::div//input'
+
+
 
 
     def __init__(self, step: StepHelper, wd: WebDriver):
@@ -160,6 +161,14 @@ class PopUp:
         self.step.click_element_by_text(self.list_of_drop_down_values, text)
 
     def set_location(self, text):
-        self.step.click_on_element(self.location_drop_down)
+        self.step.click_on_element(self.location_drop_down, True)
         time.sleep(1)
-        self.step.click_element_by_text(self.list_of_drop_down_values, text, True)
+        self.step.click_element_containing_text(self.list_of_drop_down_values, text)
+
+    def set_hr_administration_drop_downs(self, user_name=None, employee_name=None, ess_role=None):
+        if user_name is not None:
+            self.set_username(user_name)
+        if employee_name is not None:
+            self.set_employee_name(employee_name)
+        if ess_role is not None:
+            self.set_ess_role_input_dropdown(ess_role)

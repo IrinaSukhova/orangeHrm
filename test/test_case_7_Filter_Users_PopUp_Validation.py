@@ -105,6 +105,7 @@ def test_case_7_3_Verify_Reset_Button_Functionality(app):
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
     app.orangeHrm.hrAdministration.click_on_filter()
+    # app.orangeHrm.popUp.set_hr_administration_drop_downs(ess_role="Default ESS", user_name="Admin")
     app.orangeHrm.popUp.set_username("Admin")
     app.orangeHrm.popUp.set_employee_name("wer")
     app.orangeHrm.popUp.set_ess_role_input_dropdown("Default ESS")
