@@ -39,8 +39,8 @@ class PopUp:
     filter_cancel_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Cancel"]'
     searching_text = '//div[@id="employee_name_filter_dropdown"]/div[text()="Searching..."]'
     list_of_found_employee_names = '#employee_name_filter_dropdown div[ng-repeat="result in results"] span[class="angucomplete-title"]'
-    list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
-    employment_status_drop_down = '//label[text()="Employment Status"]/preceding-sibling::div//input'
+    list_of_drop_down_values = 'ul[id^="select-options"][style*=display: block"] li span'
+    employment_status_drop_down = 'print(app.orangeHrm.employeeManagement.table.get_column_data("name"))'
     location_drop_down = '//label[text()="Location"]/preceding-sibling::div//input'
 
 
@@ -157,7 +157,7 @@ class PopUp:
 
     def set_employment_status(self, text):
         self.step.click_on_element(self.employment_status_drop_down)
-        time.sleep(1)
+        time.sleep(2)
         self.step.click_element_by_text(self.list_of_drop_down_values, text)
 
     def set_location(self, text):
