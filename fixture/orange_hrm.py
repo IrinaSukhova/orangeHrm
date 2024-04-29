@@ -59,4 +59,6 @@ class OrangeHrm:
 
     def open_application_and_login(self):
         # add login logic here
+        self.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+        self.login_to_the_application()
         self.app.assert_that(self.app.orangeHrm.get_header_text()).is_equal_to('Employee Management')

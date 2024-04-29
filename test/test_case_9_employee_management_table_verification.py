@@ -15,9 +15,7 @@ expected_supervisor = ['Dereck Morris', 'Jacqueline Wagner', 'Miguel Mason', 'Re
 expected_filtered_name = []
 
 def test_case_9_employee_management_table_verification(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
-    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.step.assert_lists_equal_with_diff(app.orangeHrm.employeeManagement.table.get_column_data('employee_id'), expected_employee_id)
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name'))).is_equal_to(sorted(expected_name))
@@ -47,8 +45,7 @@ def test_case_9_employee_management_table_verification(app):
     # 6 Get fifth element from the 'Employment Status' column and assert it with the expected one.
 
 def test_case_9_1_employee_management_table_filtering(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
+    app.orangeHrm.open_application_and_login()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
@@ -64,15 +61,13 @@ def test_case_9_1_employee_management_table_filtering(app):
     # In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'
     # Set 'Location' to 'Canada'
     # Click the search button
-    # TODO: Wait for the table to load (ensure the table is refreshed with the filter applied)
-    # TODO: Using the previously created table component, get list of users Names and Assert the list of users with the expected ones
+    # Wait for the table to load (ensure the table is refreshed with the filter applied)
+    # Using the previously created table component, get list of users Names and Assert the list of users with the expected ones
     # TODO: Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
     # TODO: Get list of 'Locations' for each listed user and assert it with the expected 'Canada'
 
 def test_case_9_2_employee_management_table_location_change(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
-    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
 
     # TODO: Click on the filter button in the Employee Management section

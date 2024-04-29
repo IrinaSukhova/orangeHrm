@@ -18,6 +18,8 @@ class DemonstrationAppDemoQa:
     select_one_drop_down = 'div[id="selectOne"]'
     list_of_values_select_one_drop_down = 'div[id="selectOne"] div[class*="menu"] div[id^="react-select"][class*="option"]'
     file_upload_input = '.form-control-file'
+    home_button = 'a[id="simpleLink"]'
+
 
     def __init__(self, app):
         self.app = app
@@ -70,3 +72,7 @@ class DemonstrationAppDemoQa:
         file_input = self.wd.find_element(By.CSS_SELECTOR, self.file_upload_input)
         time.sleep(5)
         file_input.send_keys(file_path)
+
+    def switch(self, element_text):
+        self.step.click_on_element(self.home_button)
+        time.sleep(10)

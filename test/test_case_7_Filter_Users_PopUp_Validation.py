@@ -72,25 +72,21 @@
 # The 'Filter Users' pop-up should close upon clicking the 'Cancel' button and upon reopening, the previously selected values should be retained.
 
 def test_case_7_Verify_Employee_Name_Autocomplete_Suggestion(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
+    app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
     app.orangeHrm.hrAdministration.click_on_filter()
     app.orangeHrm.popUp.set_employee_name('Odis')
     app.assert_that(app.orangeHrm.popUp.get_autocomplete_names()).contains('Odis Adalwin', 'Kgosi Modise')
 
 def test_case_7_1_Verify_No_Results_Found_Error_Message(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
+    app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
     app.orangeHrm.hrAdministration.click_on_filter()
     app.orangeHrm.popUp.set_employee_name('Murat')
     app.assert_that(app.orangeHrm.popUp.get_no_results_message()).is_equal_to('No results found')
 
 def test_case_7_2_Verify_Dropdown_Default_Values(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
-    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
     app.orangeHrm.hrAdministration.click_on_filter()
     app.assert_that(app.orangeHrm.popUp.get_ess_role_dropdown_values()).is_equal_to(['All','Default ESS'])
@@ -100,9 +96,7 @@ def test_case_7_2_Verify_Dropdown_Default_Values(app):
     app.assert_that(app.orangeHrm.popUp.get_location_dropdown_values()).is_equal_to(['-- Select --', 'All', 'Australia', 'Australia office', 'Canada', 'Canadian Development Center', 'France', 'France Office', 'Germany', 'German Office', 'India', 'India Office', 'Jamaica', 'Jamaica training center', 'Mexico', 'Mexico Office', 'Philippines', 'Philippine call center', 'Singapore', 'Singapore Regional HQ', 'South Africa', 'South Africa Satellite Office', 'United Kingdom', 'UK Office', 'United States', 'US Office'])
 
 def test_case_7_3_Verify_Reset_Button_Functionality(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
-    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
     app.orangeHrm.hrAdministration.click_on_filter()
     # app.orangeHrm.popUp.set_hr_administration_drop_downs(ess_role="Default ESS", user_name="Admin")
@@ -123,9 +117,7 @@ def test_case_7_3_Verify_Reset_Button_Functionality(app):
     app.assert_that(app.orangeHrm.popUp.get_location_selected_dropdown_value()).is_equal_to("All")
 
 def test_case_7_4_Verify_Cancel_Button_Functionality(app):
-    app.orangeHrm.openUrl()
-    app.orangeHrm.login_to_the_application()
-    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
     app.orangeHrm.hrAdministration.click_on_filter()
     app.orangeHrm.popUp.click_on_filter_reset_button()

@@ -6,7 +6,7 @@ import pytest
 @pytest.mark.group3
 def test_lesson_17_drag_and_drop(app):
     app.demonstrationAppDemoQa.openUrl()
-    app.demonstrationAppDemoQa.go_to_side_menu_section("Interactions", "Droppable",)
+    app.demonstrationAppDemoQa.go_to_side_menu_section("Interactions", "Droppable")
     app.demonstrationAppDemoQa.drag_and_drop()
 
 @pytest.mark.group3
