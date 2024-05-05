@@ -12,7 +12,9 @@ expected_sub_unit = ['Marketing', 'Human Resources', 'Information Technology', '
 expected_cost_center = ['0007 - Cost Center (Marketing)', '0005 - Cost center (Administration)', '0001 - Cost Center (IT)', '0006 - Cost center (Production)', '0004 - Cost Center (Sales)', '0009 - Cost center (QA)', '0002 - Cost Center (Engineering)', '0002 - Cost Center (Engineering)', '', '', '0002 - Cost Center (Engineering)', '', '0005 - Cost center (Administration)', '0005 - Cost center (Administration)', '0007 - Cost Center (Marketing)', '0004 - Cost Center (Sales)', '0009 - Cost center (QA)', '0002 - Cost Center (Engineering)', '0002 - Cost Center (Engineering)', '0007 - Cost Center (Marketing)', '0009 - Cost center (QA)', '0006 - Cost center (Production)', '0003 - Cost Center (Finance)', '0004 - Cost Center (Sales)', '', '', '00010 - UK Business Unit', '', '0002 - Cost Center (Engineering)', '0001 - Cost Center (IT)', '0004 - Cost Center (Sales)', '0007 - Cost Center (Marketing)', '', '', '0004 - Cost Center (Sales)', '0002 - Cost Center (Engineering)', '0007 - Cost Center (Marketing)', '0005 - Cost center (Administration)', '0006 - Cost center (Production)', '0003 - Cost Center (Finance)', '0005 - Cost center (Administration)', '', '0002 - Cost Center (Engineering)', '0005 - Cost center (Administration)', '0004 - Cost Center (Sales)', '0002 - Cost Center (Engineering)', '0009 - Cost center (QA)', '0007 - Cost Center (Marketing)', '', '0001 - Cost Center (IT)']
 expected_location = ['Australia office', 'Canadian Development Center', 'US Office', 'Australia office', 'US Office', 'UK Office', 'India Office', 'India Office', 'German Office', 'German Office', 'US Office', 'France Office', 'UK Office', 'Australia office', 'India Office', 'US Office', 'Jamaica training center', 'Canadian Development Center', 'India Office', 'Singapore Regional HQ', 'South Africa Satellite Office', 'Canadian Development Center', 'US Office', 'India Office', 'Philippine call center', 'Australia office', 'US Office', 'India Office', 'US Office', 'US Office', 'US Office', 'US Office', 'France Office', 'France Office', 'UK Office', 'India Office', 'India Office', 'Canadian Development Center', 'Jamaica training center', 'US Office', 'India Office', 'German Office', 'Canadian Development Center', 'India Office', 'US Office', 'India Office', 'Mexico Office', 'France Office', 'Mexico Office', 'US Office']
 expected_supervisor = ['Dereck Morris', 'Jacqueline Wagner', 'Miguel Mason', 'Rebecca Harmony', 'Carla Donovan', 'Carla Donovan', 'Miguel Mason', 'Eric Harris', 'Anna Schmidt', 'Tim Müller', '', 'Julien Rousseau', 'Jacqueline Wagner', 'Katerina Skonis', 'Russell Hamilton', 'David Grossi', 'Maleeka Johnson', 'Khloe Jayden', 'Eric Harris', 'Wei Tan', 'Amadi Aswad', 'Jackson Smith', 'David Fernandez', 'Nina Patel', 'Armando Santos', 'Aaliyah Haq', 'Aaliyah Haq', '', '', 'Russell Hamilton', '', '', 'Léa Bernard', 'Michael Nelson', 'Michael Nelson', 'Eric Harris', 'Dereck Morris', 'Odis Adalwin', 'Jackson Smith', 'Carla Donovan', 'Anna Schmidt', 'Leah Andrews', 'Khloe Jayden', 'Odis Adalwin', 'Robert Craig', 'Tanya Arva', 'Brody Alan', 'Léa Bernard', 'Sofia Hernandez', 'Brody Alan']
-expected_filtered_name = []
+expected_filtered_name = ['Paul Collings', 'Madeline Granville', 'Tobias Jeremiassen', 'Jackson Smith']
+expected_australia_filtered_name = ['Mary Alcala', 'Caitlyn Bonwick', 'Patricia Hunt', 'Maik Mayer']
+
 
 def test_case_9_employee_management_table_verification(app):
     app.orangeHrm.open_application_and_login()
@@ -50,13 +52,12 @@ def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
     app.orangeHrm.employeeManagement.click_on_filter()
-    app.orangeHrm.popUp.set_employment_status('Full-Time Contract')
-    app.orangeHrm.popUp.set_location('Canada')
+    app.orangeHrm.popUp.set_employment_status("Full-Time Contract")
+    app.orangeHrm.popUp.set_location_input_dropdown_employee("     Canada")
     app.orangeHrm.popUp.click_on_search()
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
-    print(app.orangeHrm.employeeManagement.table.get_column_data('name'))
-
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name'))).is_equal_to(sorted(expected_filtered_name))
+
     # Click on the filter button in the Employee Management section
     # In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'
     # Set 'Location' to 'Canada'
@@ -69,20 +70,35 @@ def test_case_9_1_employee_management_table_filtering(app):
 def test_case_9_2_employee_management_table_location_change(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
-
-    # TODO: Click on the filter button in the Employee Management section
-    # TODO: In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'
-    # TODO: Set 'Location' to 'Canada'
-    # TODO: Click the search button
-    # TODO: Wait for the table to load (ensure the table is refreshed with the filter applied)
+    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    app.orangeHrm.employeeManagement.click_on_filter()
+    app.orangeHrm.popUp.set_employment_status("Full-Time Contract")
+    app.orangeHrm.popUp.set_location_input_dropdown_employee("     Canada")
+    app.orangeHrm.popUp.click_on_search()
+    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    app.assert_that((sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))).is_equal_to(sorted(expected_filtered_name))
+    print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
+    print(sorted(expected_filtered_name))
+    app.orangeHrm.employeeManagement.click_on_filter()
+    app.orangeHrm.popUp.set_location_input_dropdown_employee("     Australia")
+    app.orangeHrm.popUp.click_on_search()
+    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    app.assert_that((sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))).is_equal_to(sorted(expected_australia_filtered_name))
+    print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
+    print(sorted(expected_australia_filtered_name))
+    # Click on the filter button in the Employee Management section
+    # In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'
+    # Set 'Location' to 'Canada'
+    # Click the search button
+    # Wait for the table to load (ensure the table is refreshed with the filter applied)
     # TODO: Using the previously created table component, get list of users and Assert the list of users with the expected ones
     # TODO: Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
     # TODO: Get list of 'Locations' for each listed user and assert it with the expected 'Canada'
 
-    # TODO: Click on the filter button again in the Employee Management section
-    # TODO: Change 'Location' to 'Australia'
-    # TODO: Click the search button
-    # TODO: Wait for the table to load (ensure the table is refreshed with the new location)
-    # TODO: Using the previously created table component, get list of users and Assert the list of users with the expected ones
-    # TODO: Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
-    # TODO: Get list of 'Locations' for each listed user and assert it with the expected 'Australia'
+    # Click on the filter button again in the Employee Management section
+    # Change 'Location' to 'Australia'
+    #  Click the search button
+    # Wait for the table to load (ensure the table is refreshed with the new location)
+    # Using the previously created table component, get list of users and Assert the list of users with the expected ones
+    #  Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
+    #  Get list of 'Locations' for each listed user and assert it with the expected 'Australia'

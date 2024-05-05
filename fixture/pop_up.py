@@ -39,12 +39,13 @@ class PopUp:
     filter_cancel_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Cancel"]'
     searching_text = '//div[@id="employee_name_filter_dropdown"]/div[text()="Searching..."]'
     list_of_found_employee_names = '#employee_name_filter_dropdown div[ng-repeat="result in results"] span[class="angucomplete-title"]'
-    list_of_drop_down_values = 'ul[id^="select-options"][style*=display: block"] li span'
-    employment_status_drop_down = 'print(app.orangeHrm.employeeManagement.table.get_column_data("name"))'
-    location_drop_down = '//label[text()="Location"]/preceding-sibling::div//input'
 
 
-
+    # POpup_employee_filtre
+    location_input_field_employee = '//label[text()="Location"]/preceding-sibling::div//input'
+    status_input_field_employee = '//label[text()="Employment Status"]/preceding-sibling::div//input[@value="All"]'
+    list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
+    location_dropdown_employee_values = '//label[text()="Location"]/preceding-sibling::div//li[@class]/span'
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -138,7 +139,7 @@ class PopUp:
 
     def set_status_input_dropdown(self, text):
         self.step.click_on_element(self.status_input_field)
-        time.sleep(0.5)
+        time.sleep(1)
         self.step.click_element_by_text(self.status_dropdown_values, text)
 
     def set_location_input_dropdown(self, text):
@@ -156,14 +157,14 @@ class PopUp:
         self.step.specified_element_is_not_present(self.filter_popup_table)
 
     def set_employment_status(self, text):
-        self.step.click_on_element(self.employment_status_drop_down)
-        time.sleep(2)
+        self.step.click_on_element(self.status_input_field_employee)
+        time.sleep(1)
         self.step.click_element_by_text(self.list_of_drop_down_values, text)
 
-    def set_location(self, text):
-        self.step.click_on_element(self.location_drop_down, True)
-        time.sleep(1)
-        self.step.click_element_containing_text(self.list_of_drop_down_values, text)
+    def set_location_input_dropdown_employee(self, text):
+        self.step.click_on_element(self.location_input_field_employee)
+        time.sleep(0.5)
+        self.step.click_element_by_text(self.location_dropdown_employee_values, text)
 
     def set_hr_administration_drop_downs(self, user_name=None, employee_name=None, ess_role=None):
         if user_name is not None:

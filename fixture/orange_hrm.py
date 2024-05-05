@@ -27,7 +27,7 @@ class OrangeHrm:
         self.popUp = PopUp(self.step, self.wd)
         self.employeeManagement = EmployeeManagement(self.step, self.wd)
 
-    def openUrl(self, url="https://portnov_administrator-trials712.orangehrmlive.com"):
+    def openUrl(self, url="https://admin_portnov-trials712.orangehrmlive.com/"):
         self.wd.get(url)
 
     def set_username(self, username):
@@ -59,6 +59,6 @@ class OrangeHrm:
 
     def open_application_and_login(self):
         # add login logic here
-        self.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+        self.openUrl("https://admin_portnov-trials712.orangehrmlive.com/")
         self.login_to_the_application()
         self.app.assert_that(self.app.orangeHrm.get_header_text()).is_equal_to('Employee Management')

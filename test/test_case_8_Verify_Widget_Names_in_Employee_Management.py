@@ -42,4 +42,5 @@ def test_case_8_1_verify_retrieval_of_widget_names_in_employee_management_compon
     time.sleep(10)
     app.orangeHrm.employeeManagement.click_gear_button()
     app.orangeHrm.employeeManagement.click_my_widgets_tab()
+   # app.step.assert_lists_equal_with_diff(app.orangeHrm.employeeManagement.get_widgets_names(),list_of_expected_configurations)
     app.assert_that(app.orangeHrm.employeeManagement.get_widgets_names().sort()).is_equal_to(list_of_expected_configurations.sort())

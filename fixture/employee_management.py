@@ -1,3 +1,5 @@
+import time
+
 from fixture.step import StepHelper
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -7,10 +9,10 @@ from fixture.table import Table
 class EmployeeManagement:
     home_button = "a[data-automation-id='menu_home']"
     gear_button = "(//i[text()='ohrm_settings'])[2]"
-    my_widgets_tab = "span[class='nav-link active']"
+    my_widgets_tab = "//span[@class='nav-link']"
     list_of_widgets_header_texts = ".widget-header span:last-child"
     list_of_configurations_texts = "//a[@ng-if='!menu.children && !!menu.uiSref && maxLevels <= 0']"
-    list_widgets_names = "span[class='oxd-switch-label']"
+    list_widgets_names = '//span[@class= "oxd-switch-label"]'
     first_table_row = "tbody tr:nth-child(1)"
     list_employee_button = "//a[@class='top-level-menu-item active']"
     filter_button = '*[data-tooltip="Filter"]'
@@ -54,6 +56,8 @@ class EmployeeManagement:
 
     def get_widgets_names(self):
         return self.step.get_elements_texts(self.list_widgets_names)
+        time.sleep(10)
+
 
     def wait_for_table1(self):
         self.step.wait_for_element(self.first_table_row, 40)
