@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 
 from fixture.step import StepHelper
 
+
 class DemonstrationAppDemoQa:
     parent_element_of_sub_menu = '//div[@class="element-list collapse show"]/../span'
     opened_sub_menu = 'div[class="element-list collapse show"]'
@@ -15,6 +16,13 @@ class DemonstrationAppDemoQa:
     droppable = '#droppable'
     droppable2 = 'nav[class="nav nav-tabs"]'
     old_style_drop_down = '#oldSelectMenu'
+    file_upload_input = '#uploadFile'
+    drag_box = '#dragBox'
+    dragabble_header = '//h1[text()="Dragabble"]'
+    select_one_dropdown = "div[id='selectOne'] div[class*='menu'] div[id^='react-select'][class*='option']"
+    select_one_input = '#selectOne'
+    home_button = '#simpleLink'
+    home_banner_img = '.home-banner img'
     select_one_drop_down = 'div[id="selectOne"]'
     list_of_values_select_one_drop_down = 'div[id="selectOne"] div[class*="menu"] div[id^="react-select"][class*="option"]'
     file_upload_input = '.form-control-file'
@@ -43,6 +51,14 @@ class DemonstrationAppDemoQa:
         # Perform the drag and drop action
         ActionChains(self.wd).drag_and_drop(source_element, target_element).perform()
 
+    def drag_and_drop_dragabble(self):
+        # Wait for the draggable and droppable elements to be visible
+        source_element = self.step.wait_for_element(self.drag_box)
+        target_element = self.step.wait_for_element(self.dragabble_header)
+        self.step.scroll_element_into_center(self.dragabble_header)
+        # Perform the drag and drop action
+        ActionChains(self.wd).drag_and_drop(source_element, target_element).perform()
+
     def drag_and_drop2(self):
         # Wait for the draggable and droppable elements to be visible
         source_element2 = self.step.wait_for_element(self.draggable2)
@@ -61,17 +77,32 @@ class DemonstrationAppDemoQa:
         self.step.scroll_element_into_center(self.old_style_drop_down)
         self.step.select_dropdown_by_text(self.old_style_drop_down, text)
 
-    def select_value_from_select_one_drop_down(self, text):
-        self.step.scroll_element_into_center(self.select_one_drop_down)
-        self.step.click_on_element(self.select_one_drop_down)
-        self.step.click_element_by_text(self.list_of_values_select_one_drop_down, text)
-
+    def select_value_from_select_one_dropdown(self, text):
+        self.step.scroll_element_into_center(self.select_one_input)
+        self.step.click_on_element(self.select_one_input)
+        self.step.click_element_by_text(self.select_one_dropdown, text, True)
 
     def upload_file(self, file_path):
         self.step.scroll_element_into_center(self.file_upload_input)
         file_input = self.wd.find_element(By.CSS_SELECTOR, self.file_upload_input)
         time.sleep(5)
         file_input.send_keys(file_path)
+
+    def upload_my_file(self, file_path):
+        self.step.scroll_element_into_center(self.file_upload_input)
+        file_input = self.wd.find_element(By.CSS_SELECTOR, self.file_upload_input)
+        file_input.send_keys(file_path)
+
+    def click_home_button(self):
+        self.step.scroll_element_into_center(self.home_button)
+        self.step.click_on_element(self.home_button)
+
+    def get_page_banner(self):
+        self.step.wait_for_element(self.home_banner_img, 10)
+        return self.step.get_element_attribute_value(self.home_banner_img, "alt")
+
+    def get_home_page_url(self):
+        return self.wd.current_url
 
     def home_button1(self):
         self.step.click_on_element(self.home_button)

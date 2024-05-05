@@ -34,7 +34,7 @@ class Application:
         self.step = StepHelper(self)
         self.orangeHrm = OrangeHrm(self)
         self.demonstrationAppDemoQa = DemonstrationAppDemoQa(self)
-        self.utils = Utils(self)
+        self.utils = Utils()
 
     def destroy(self):
         # Ensure the web driver quits properly
