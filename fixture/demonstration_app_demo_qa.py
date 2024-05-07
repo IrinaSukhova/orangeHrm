@@ -16,17 +16,17 @@ class DemonstrationAppDemoQa:
     droppable = '#droppable'
     droppable2 = 'nav[class="nav nav-tabs"]'
     old_style_drop_down = '#oldSelectMenu'
-    file_upload_input = '#uploadFile'
+    file_upload_input = '.form-control-file'                    #'#uploadFile'
     drag_box = '#dragBox'
     dragabble_header = '//h1[text()="Dragabble"]'
     select_one_dropdown = "div[id='selectOne'] div[class*='menu'] div[id^='react-select'][class*='option']"
     select_one_input = '#selectOne'
-    home_button = '#simpleLink'
+    home_button = "//a[@id='simpleLink']"                                           #'#simpleLink'
     home_banner_img = '.home-banner img'
     select_one_drop_down = 'div[id="selectOne"]'
     list_of_values_select_one_drop_down = 'div[id="selectOne"] div[class*="menu"] div[id^="react-select"][class*="option"]'
     file_upload_input = '.form-control-file'
-    home_button = "//a[@id='simpleLink']"
+    small_open_button = 'button[id="showSmallModal"]'
 
 
     def __init__(self, app):
@@ -99,10 +99,13 @@ class DemonstrationAppDemoQa:
 
     def get_page_banner(self):
         self.step.wait_for_element(self.home_banner_img, 10)
-        return self.step.get_element_attribute_value(self.home_banner_img, "alt")
+        return self.step.get_element_attribute_value(self.home_banner_img, 'Alt')
 
     def get_home_page_url(self):
         return self.wd.current_url
 
     def home_button1(self):
         self.step.click_on_element(self.home_button)
+
+    def open_small_modal(self):
+        self.step.click_on_element(self.small_open_button)

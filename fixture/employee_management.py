@@ -17,6 +17,7 @@ class EmployeeManagement:
     list_employee_button = "//a[@class='top-level-menu-item active']"
     filter_button = '*[data-tooltip="Filter"]'
     employee_management_table_loading_spinner = '#loading-bar .bar .peg'
+    add_folder_button = "i[class='oxd-svg-icon oxd-svg-icon--extra-large']"
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -67,3 +68,4 @@ class EmployeeManagement:
 
     def wait_for_loading_bar_gone(self):
         self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)
+

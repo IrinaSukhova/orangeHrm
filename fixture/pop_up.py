@@ -47,6 +47,10 @@ class PopUp:
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
     location_dropdown_employee_values = '//label[text()="Location"]/preceding-sibling::div//li[@class]/span'
 
+    input_report_name_field = '//input[@class="oxd-input oxd-input--active"]'
+    save_folder_name = 'button[data-test="submitFolderButton"]'
+
+
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
         self.wd = wd
@@ -173,3 +177,12 @@ class PopUp:
             self.set_employee_name(employee_name)
         if ess_role is not None:
             self.set_ess_role_input_dropdown(ess_role)
+
+    #def input_report_name(self, text):
+    #    self.step.input_text(self.input_report_name_field, text)
+
+    def input_report_name(self):
+        self.step.input_text(self.input_report_name_field)
+
+    def click_save_name_folder(self):
+        self.step.click_on_element(self.save_folder_name)

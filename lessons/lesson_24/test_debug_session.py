@@ -8,8 +8,8 @@ def test_debugger_demonstration_usage(app):
     app.step.switch_to_tab_by_url("https://demoqa.com/")
     page_banner = app.demonstrationAppDemoQa.get_page_banner()
     page_url = app.demonstrationAppDemoQa.get_home_page_url()
-    app.assert_that(app.demonstrationAppDemoQa.get_page_banner()).is_equal_to("Selenium Online Training")
-    app.assert_that(app.demonstrationAppDemoQa.get_home_page_url()).is_equal_to('https://demoqa.com/')
+    app.assert_that(page_banner).is_equal_to("Selenium Online Training")
+    app.assert_that(page_url).is_equal_to('https://demoqa.com/')
 
 # PRACTICAL EXAMPLES:
 def test_drag_and_drop_functionality(app):
@@ -20,7 +20,7 @@ def test_drag_and_drop_functionality(app):
 
 def test_dropdown_menu_interaction(app):
     # Open the URL for the select menu page
-    app.demonstrationAppDemoQa.openUrl("https://demoqa.com/select-menu")
+    app.demonstrationAppDemoQa.openUrl()
     # Select an item from the dropdown
     app.demonstrationAppDemoQa.select_value_from_select_one_dropdown("Dr.")
 
@@ -28,21 +28,21 @@ def test_dropdown_menu_interaction1(app):
     # Open the default URL set in the openUrl method
     app.demonstrationAppDemoQa.openUrl()
     # Navigate to the select menu page
-    # app.demonstrationAppDemoQa.go_to_side_menu_section("Widgets", "Home")
+    app.demonstrationAppDemoQa.go_to_side_menu_section("Widgets", "Select Menu")
     # Select 'White' from the dropdown menu
-    app.demonstrationAppDemoQa.select_value_from_select_one_dropdown('Dr.')
+    app.demonstrationAppDemoQa.select_value_from_old_style_drop_down('White')
 
 def test_dropdown_menu_interaction2(app):
     # Navigate to the select menu page
     app.demonstrationAppDemoQa.openUrl("https://demoqa.com/select-menu")
     # Select an item from the dropdown
-    app.demonstrationAppDemoQa.select_value_from_select_one_dropdown('White')
+    app.demonstrationAppDemoQa.select_value_from_select_one_dropdown('Mr.')
 
 def test_file_upload_functionality(app):
     # Navigate to the file upload page
     app.demonstrationAppDemoQa.openUrl("https://demoqa.com/upload-download")
     # Upload a file using an absolute path
-    app.demonstrationAppDemoQa.upload_my_file("/Users/admin/PycharmProjects/orangeHrm/files/test_upload.txt")
+    app.demonstrationAppDemoQa.upload_my_file('C:/Users/isukhova/PycharmProjects/orangeHrm/files/test_uploadHome.txt')
 
 def test_navigation_to_home(app):
     # Open the main page of the site
@@ -56,9 +56,9 @@ def test_navigation_to_home(app):
 
 def test_modal_dialog_interaction(app):
     # Open the modal dialogs page
-    app.demonstrationAppDemoQa.openUrl("https://demoqa.com/modal-dialogs")
+    app.demonstrationAppDemoQa.openUrl('https://demoqa.com/modal-dialogs')
     # Click to Open the small modal without checking if it's open
-    app.demonstrationAppDemoQa.wd.find_element(By.ID, "showSmallModal").click()
+    app.demonstrationAppDemoQa.open_small_modal()
     # Get the text from the modal title and store it
     modal_title_text = app.demonstrationAppDemoQa.wd.find_element(By.ID, "example-modal-sizes-title-sm").text
     # Assert that the modal title text matches expected text
