@@ -28,7 +28,7 @@ def test_dropdown_menu_interaction1(app):
     # Open the default URL set in the openUrl method
     app.demonstrationAppDemoQa.openUrl()
     # Navigate to the select menu page
-    app.demonstrationAppDemoQa.go_to_side_menu_section("Widgets", "Select Menu")
+    # app.demonstrationAppDemoQa.go_to_side_menu_section("Widgets", "Select Menu")
     # Select 'White' from the dropdown menu
     app.demonstrationAppDemoQa.select_value_from_old_style_drop_down('White')
 
