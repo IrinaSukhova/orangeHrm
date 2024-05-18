@@ -39,6 +39,7 @@ class HrAdministration:
         self.step.click_on_element(self.filter_users_button, 1)
 
     def get_list_of_user_names(self):
+        self.step.specified_element_is_not_present(self.filter_popup_table)
         time.sleep(3)
         return self.step.get_elements_texts(self.filtered_usernames)
 

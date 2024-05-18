@@ -11,7 +11,7 @@ import time
 
 from helpers.utils import Utils
 
-random_name = Utils.generate_random_string(15)
+random_name = Utils.generate_random_string()
 
 
 def test_case_10_verify_folders_creation_functionality(app):
@@ -19,8 +19,7 @@ def test_case_10_verify_folders_creation_functionality(app):
     app.orangeHrm.sideMenu.click_on_side_menu_button("Reports and Analytics")
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
     app.orangeHrm.reportAnalytics.click_on_add_folder()
-    print(random_name)
-    app.orangeHrm.popUp.input_report_name(random_name)
-    app.orangeHrm.popUp.click_save_name_folder()
-    app.orangeHrm.reportAnalytics.get_list_reports_name()
+    app.orangeHrm.reportAnalytics.input_report_name(random_name)
+    app.orangeHrm.reportAnalytics.click_save_name_folder()
+    app.orangeHrm.reportAnalytics.wait_for_page_loading()
     app.assert_that(app.orangeHrm.reportAnalytics.get_list_reports_name()).contains(random_name)

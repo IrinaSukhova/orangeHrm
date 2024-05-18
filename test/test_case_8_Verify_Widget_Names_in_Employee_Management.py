@@ -1,3 +1,10 @@
+import time
+import pytest
+
+list_of_expected_widgets = ['Quick Access', 'Time At Work', 'Employees on Leave Today', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', "Current Year's Leave Taken by Department", 'Buzz Latest Posts', 'Leave Taken on Each Day of the Week Over Time', 'Leave Scheduled in Each Month', 'Leave Taken on Each Calendar Month Over the Years', 'Headcount by Location', 'Annual Basic Payment by Location', 'My Actions']
+list_of_expected_configurations = ['My Actions', 'Quick Access', 'Employees on Leave Today', 'Time At Work', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', 'Buzz Latest Posts', 'Current Year`s Leave Taken by Department', 'Leave Taken on Each Calendar Month Over the Years', 'Leave Scheduled in Each Month', 'Leave Taken on Each Day of the Week Over Time', 'Headcount by Location', 'Annual Basic Payment by Location']
+
+
 # Test Case 8: Verify Retrieval of Widget Names in Employee Management Component
 # Test Name: Test_Get_Widget_Names_Employee Management
 # Steps:
@@ -9,7 +16,14 @@
 # 6. Verify that the list of retrieved widget names matches the expected list.
 # Expected Result:
 # The 'get_widget_names' method should return an accurate list of widget names that are present within the Employee Management component.
-import time
+@pytest.mark.group3
+def test_case_8_verify_retrieval_of_widget_names_in_employee_management_component(app):
+    app.orangeHrm.open_application_and_login()
+    app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
+    app.orangeHrm.employeeManagement.click_home()
+    app.assert_that(app.orangeHrm.employeeManagement.get_widgets_headers().sort()).is_equal_to(list_of_expected_widgets.sort())
+
+
 
 # Test Case 8_1: Verify Retrieval of Widget Names in Employee Management Component inside the Configuration
 # Test Name: Test_Get_Widget_Names_Employee_Management Configuration section
@@ -24,23 +38,12 @@ import time
 # 8. Verify that the list of retrieved widget names matches the expected list.
 # Expected Result:
 # The 'get_widget_names' method should return an accurate list of widget names from the side menu. Then assert it with the expected one.
-
-list_of_expected_widgets = ['Quick Access', 'Time At Work', 'Employees on Leave Today', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', "Current Year's Leave Taken by Department", 'Buzz Latest Posts', 'Leave Taken on Each Day of the Week Over Time', 'Leave Scheduled in Each Month', 'Leave Taken on Each Calendar Month Over the Years', 'Headcount by Location', 'Annual Basic Payment by Location', 'My Actions']
-list_of_expected_configurations = ['My Actions', 'Quick Access', 'Employees on Leave Today', 'Time At Work', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', 'Buzz Latest Posts', 'Current Year`s Leave Taken by Department', 'Leave Taken on Each Calendar Month Over the Years', 'Leave Scheduled in Each Month', 'Leave Taken on Each Day of the Week Over Time', 'Headcount by Location', 'Annual Basic Payment by Location']
-
-def test_case_8_verify_retrieval_of_widget_names_in_employee_management_component(app):
-    app.orangeHrm.open_application_and_login()
-    app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
-    app.assert_that(app.orangeHrm.employeeManagement.get_widgets_headers().sort()).is_equal_to(list_of_expected_widgets.sort())
-
-
+@pytest.mark.group3
 def test_case_8_1_verify_retrieval_of_widget_names_in_employee_management_component_inside_the_configuration(app):
     app.orangeHrm.open_application_and_login()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.orangeHrm.employeeManagement.click_home()
-    time.sleep(10)
     app.orangeHrm.employeeManagement.click_gear_button()
     app.orangeHrm.employeeManagement.click_my_widgets_tab()
-   # app.step.assert_lists_equal_with_diff(app.orangeHrm.employeeManagement.get_widgets_names(),list_of_expected_configurations)
     app.assert_that(app.orangeHrm.employeeManagement.get_widgets_names().sort()).is_equal_to(list_of_expected_configurations.sort())

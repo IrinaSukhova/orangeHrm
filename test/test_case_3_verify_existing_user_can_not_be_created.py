@@ -8,6 +8,10 @@
 # Expected Result:
 # The system should not allow creating a user with a username that already exists and should display an appropriate error message.
 
+
+import pytest
+
+@pytest.mark.group1
 def test_case_3_verify_existing_user_can_not_be_created_again(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')

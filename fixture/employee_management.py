@@ -57,7 +57,7 @@ class EmployeeManagement:
 
     def get_widgets_names(self):
         return self.step.get_elements_texts(self.list_widgets_names)
-        time.sleep(10)
+
 
 
     def wait_for_table1(self):

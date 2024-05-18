@@ -5,8 +5,9 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class PopUp:
-    user_name_field = '#systemuser_uname_filter'
-    employee_name_field = '#employee_name_filter_value'
+    user_name_field = '#user_name'
+    employee_name_field = '#selectedEmployee_value'
+    employee_name_filter_field = '#employee_name_filter_value'
     password_field = '#password'
     confirm_password_field = '#confirmpassword'
     save_button = '#modal-save-button'
@@ -23,7 +24,7 @@ class PopUp:
     confirm_password_error_massage = '//input[@id="confirmpassword"]/following-sibling::span'
     strength_indicator = '.password-strength-check'
     autocomplete_dropdown = '#employee_name_filter_dropdown span.angucomplete-title'
-    message_no_results = "//div[contains(@id, 'employee_name_filter_dropdown') and not(contains(@class, 'ng-hide'))]//div[contains(@class, 'angucomplete-searching') and not(contains(@class, 'ng-hide')) and text()='No results found']"
+    message_no_results = "//div[contains(text(),'No results found')]"
     ess_role_input_field = '#essroles_inputfileddiv input'
     ess_role_dropdown_values = '#essroles_inputfileddiv li'
     supervisor_role_input_field = '#supervisorroles_inputfileddiv input'
@@ -39,40 +40,57 @@ class PopUp:
     filter_cancel_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Cancel"]'
     searching_text = '//div[@id="employee_name_filter_dropdown"]/div[text()="Searching..."]'
     list_of_found_employee_names = '#employee_name_filter_dropdown div[ng-repeat="result in results"] span[class="angucomplete-title"]'
-
+    employee_name_filter_dropdown_warnings = '//div[@id="employee_name_filter_dropdown" and @class="angucomplete-dropdown"]/div[2]'
 
     # POpup_employee_filtre
     location_input_field_employee = '//label[text()="Location"]/preceding-sibling::div//input'
     status_input_field_employee = '//label[text()="Employment Status"]/preceding-sibling::div//input[@value="All"]'
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
-    location_dropdown_employee_values = '//label[text()="Location"]/preceding-sibling::div//li[@class]/span'
+    location_dropdown_employee_values = 'ul[id^="select-options"][style*="display: block"] li span'
+    employee_name_filter_dropdown = '.angucomplete-title'
 
-    input_report_name_field = '//input[@class="oxd-input oxd-input--active"]'
+    input_report_name_field = 'input[placeholder="Enter Folder Name"]'
     save_folder_name = 'button[data-test="submitFolderButton"]'
 
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
         self.wd = wd
+        self.training_filter = TrainingFilter(step, wd)
 
     def set_username(self, text):
+        self.step.click_on_element(self.user_name_field)
         self.step.input_text(self.user_name_field, text)
+
+    def set_user_name_filter(self, text):
+        self.step.input_text(self.user_name_filter_field, text)
 
     def set_employee_name(self, text):
         self.step.input_text(self.employee_name_field, text)
         self.step.specified_element_is_not_present(self.searching_text, 6)
         if self.step.specified_element_is_present(self.message_no_results, 3) == False:
-            self.step.click_element_containing_text(self.list_of_found_employee_names, text)
+            self.step.click_element_containing_text(self.employee_name_filter_dropdown, text)
+
+    def set_employee_name_filter(self, text):
+        self.step.input_text(self.employee_name_filter_field, text)
+        self.step.specified_element_is_not_present(self.searching_text, 6)
+        if self.step.specified_element_is_present(self.employee_name_filter_dropdown_warnings, 3) == False:
+            self.step.click_element_containing_text(self.employee_name_filter_dropdown, text)
 
     def set_password(self, text):
-        self.step.click_on_element(self.password_field)
         self.step.input_text(self.password_field, text)
+
+    def click_on_password_field(self):
+        self.step.click_on_element(self.password_field)
 
     def set_confirm_password(self, text):
         self.step.input_text(self.confirm_password_field, text)
 
     def click_on_save(self):
         self.step.click_on_element(self.save_button)
+
+    def click_on_empty(self):
+        self.step.click_on_element(self.empty_space)
 
     def get_user_exist_error(self):
         return self.step.get_element_text(self.user_exists_error_massage)
@@ -81,7 +99,8 @@ class PopUp:
         self.step.click_on_element(self.filter_search_button)
 
     def get_strength_indicator_text(self):
-        self.step.specified_element_is_present(self.strength_indicator, 5)
+        self.step.wait_for_element(self.pass_strength_message, 30)
+        time.sleep(0.5)
         return self.step.get_element_text(self.strength_indicator)
 
     def get_password_error(self):
@@ -90,8 +109,9 @@ class PopUp:
     def get_confirm_password_error(self):
         return self.step.get_element_text(self.confirm_password_error_massage)
 
-    def get_autocomplete_names(self):
-        return self.step.get_elements_texts(self.autocomplete_dropdown)
+    def get_employee_name_dropdown_text(self):
+        self.step.specified_element_is_present(self.employee_name_filter_dropdown, 10)
+        return self.step.get_elements_texts(self.employee_name_filter_dropdown)
 
     def get_no_results_message(self):
         return self.step.get_element_text(self.message_no_results)
@@ -126,6 +146,11 @@ class PopUp:
     def get_location_selected_dropdown_value(self):
         return self.step.get_element_attribute_value(self.location_input_field, 'value', True)
 
+    def get_filter_table_name(self):
+        self.step.wait_for_element(self.filter_popup_table, 20)
+        return self.step.get_element_text(self.filter_popup_table)
+
+
     def set_ess_role_input_dropdown(self, text):
         self.step.click_on_element(self.ess_role_input_field)
         time.sleep(0.5)
@@ -143,13 +168,13 @@ class PopUp:
 
     def set_status_input_dropdown(self, text):
         self.step.click_on_element(self.status_input_field)
-        time.sleep(1)
+        time.sleep(0.5)
         self.step.click_element_by_text(self.status_dropdown_values, text)
 
     def set_location_input_dropdown(self, text):
-        self.step.click_on_element(self.location_input_field)
+        self.step.click_on_element(self.location_input_field,True, True)
         time.sleep(0.5)
-        self.step.click_element_by_text(self.location_dropdown_values, text)
+        self.step.click_element_by_text(self.location_dropdown_employee_values, text)
 
     def click_on_filter_reset_button(self):
         self.step.click_on_element(self.filter_reset_button)
@@ -165,24 +190,46 @@ class PopUp:
         time.sleep(1)
         self.step.click_element_by_text(self.list_of_drop_down_values, text)
 
-    def set_location_input_dropdown_employee(self, text):
-        self.step.click_on_element(self.location_input_field_employee)
-        time.sleep(0.5)
-        self.step.click_element_by_text(self.location_dropdown_employee_values, text)
+    def set_employee_filter_location(self, text):
+        self.step.click_on_element(self.location_input_field_employee, True)
+        time.sleep(1)
+        self.step.click_element_containing_text(self.location_dropdown_employee_values, text)
 
-    def set_hr_administration_drop_downs(self, user_name=None, employee_name=None, ess_role=None):
+    def set_hr_administration_drop_downs(self, user_name=None, employee_name=None, ess_role=None, admin_role=None,
+                                         supervisor_role=None, status=None, location=None):
         if user_name is not None:
             self.set_username(user_name)
         if employee_name is not None:
-            self.set_employee_name(employee_name)
+            self.set_employee_name_filter(employee_name)
         if ess_role is not None:
             self.set_ess_role_input_dropdown(ess_role)
+        if admin_role is not None:
+            self.set_admin_role_input_dropdown(admin_role)
+        if supervisor_role is not None:
+            self.set_supervisor_role_dropdown(supervisor_role)
+        if status is not None:
+            self.set_status_input_dropdown(status)
+        if location is not None:
+            self.set_location_input_dropdown(location)
+
+
+class TrainingFilter:
+    title_input_field = 'div[class="input-field row"] #searchCourse_title'
+    iframe = "#noncoreIframe"
+    filter_courses_header = '.customized-modal-header h5'
+    title_input_field_autocomplete_dropdowns = '.ac_results ul li'
+
+
+
+    def __init__(self, step: StepHelper, wd: WebDriver):
+        self.step = step
+        self.wd = wd
+
+    def set_title(self, title):
+        self.step.switch_to_iframe(self.iframe)
+        self.step.input_text(self.title_input_field, title)
+        self.step.switch_to_default_content()
 
     #def input_report_name(self, text):
     #    self.step.input_text(self.input_report_name_field, text)
 
-    def input_report_name(self):
-        self.step.input_text(self.input_report_name_field)
-
-    def click_save_name_folder(self):
-        self.step.click_on_element(self.save_folder_name)

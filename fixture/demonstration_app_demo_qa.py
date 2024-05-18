@@ -34,7 +34,7 @@ class DemonstrationAppDemoQa:
         self.step: StepHelper = self.app.step
         self.wd = self.app.wd
 
-    def openUrl(self, url="https://demoqa.com/select-menu"):
+    def openUrl2(self, url="https://demoqa.com/select-menu"):
         self.wd.get(url)
 
     def go_to_side_menu_section(self, section_name, sub_section_name):
