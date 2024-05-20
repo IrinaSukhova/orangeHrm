@@ -1,6 +1,6 @@
 import time
 
-from selenium.common.exceptions import NoSuchElementException, WebDriverException
+from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -211,3 +211,4 @@ class StepHelper:
 
     def switch_to_default_content(self):
         self.wd.switch_to.default_content()
+

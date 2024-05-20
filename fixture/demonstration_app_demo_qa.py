@@ -16,18 +16,17 @@ class DemonstrationAppDemoQa:
     droppable = '#droppable'
     droppable2 = 'nav[class="nav nav-tabs"]'
     old_style_drop_down = '#oldSelectMenu'
-    file_upload_input = '.form-control-file'                    #'#uploadFile'
+    file_upload_input = '.form-control-file'  # '#uploadFile'
     drag_box = '#dragBox'
     dragabble_header = '//h1[text()="Dragabble"]'
     select_one_dropdown = "div[id='selectOne'] div[class*='menu'] div[id^='react-select'][class*='option']"
     select_one_input = '#selectOne'
-    home_button = "//a[@id='simpleLink']"                                           #'#simpleLink'
+    home_button = "//a[@id='simpleLink']"  # '#simpleLink'
     home_banner_img = '.home-banner img'
     select_one_drop_down = 'div[id="selectOne"]'
     list_of_values_select_one_drop_down = 'div[id="selectOne"] div[class*="menu"] div[id^="react-select"][class*="option"]'
     file_upload_input = '.form-control-file'
     small_open_button = 'button[id="showSmallModal"]'
-
 
     def __init__(self, app):
         self.app = app
@@ -41,7 +40,6 @@ class DemonstrationAppDemoQa:
         self.collapse_all_menu_elements()
         self.step.click_element_by_text(self.list_of_side_menu_items, section_name, True)
         self.step.click_element_by_text(self.list_of_side_menu_sub_items, sub_section_name, True)
-
 
     def drag_and_drop(self):
         # Wait for the draggable and droppable elements to be visible

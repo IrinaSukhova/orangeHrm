@@ -1,8 +1,7 @@
-import time
+from selenium.webdriver.remote.webdriver import WebDriver
 
 from fixture.step import StepHelper
-from selenium.webdriver.remote.webdriver import WebDriver
-from fixture.table import Table
+
 
 class ReportAnalytics:
     add_folder_button = "i[class='oxd-svg-icon oxd-svg-icon--extra-large']"
@@ -10,7 +9,6 @@ class ReportAnalytics:
     add_report_name_field = 'input[placeholder="Enter Folder Name"]'
     save_folder_name = '//div[text()="Save"]'
     loading_spinner = '.oxd-loading-spinner'
-
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step

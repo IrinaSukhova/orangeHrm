@@ -1,8 +1,9 @@
 import os
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
+
 from assertpy import assert_that
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 from fixture.demonstration_app_demo_qa import DemonstrationAppDemoQa
 from fixture.orange_hrm import OrangeHrm

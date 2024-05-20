@@ -1,8 +1,6 @@
-import time
-
-from fixture.step import StepHelper
 from selenium.webdriver.remote.webdriver import WebDriver
 
+from fixture.step import StepHelper
 from fixture.table import Table
 
 
@@ -58,8 +56,6 @@ class EmployeeManagement:
     def get_widgets_names(self):
         return self.step.get_elements_texts(self.list_widgets_names)
 
-
-
     def wait_for_table1(self):
         self.step.wait_for_element(self.first_table_row, 40)
 
@@ -68,4 +64,3 @@ class EmployeeManagement:
 
     def wait_for_loading_bar_gone(self):
         self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)
-

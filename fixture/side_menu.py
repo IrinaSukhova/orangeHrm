@@ -1,5 +1,6 @@
-from fixture.step import StepHelper
 from selenium.webdriver.remote.webdriver import WebDriver
+
+from fixture.step import StepHelper
 
 
 class SideMenu:
