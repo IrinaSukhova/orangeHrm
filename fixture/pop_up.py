@@ -58,6 +58,7 @@ class PopUp:
         self.step = step
         self.wd = wd
         self.training_filter = TrainingFilter(step, wd)
+        self.training_add_course = TrainingAddCourse(step, wd)
         self.recruitment_add_candidate = RecruitmentAddCandidate(step, wd)
 
     def set_username(self, text):
@@ -219,6 +220,8 @@ class TrainingFilter:
     iframe = "#noncoreIframe"
     filter_courses_header = '.customized-modal-header h5'
     title_input_field_autocomplete_dropdowns = '.ac_results ul li'
+    input_fields_dropdown = '.ac_results ul li'
+    filter_search = 'a[id="searchBtn"]'
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -228,6 +231,15 @@ class TrainingFilter:
         self.step.switch_to_iframe(self.iframe)
         self.step.input_text(self.title_input_field, title)
         self.step.switch_to_default_content()
+
+    def search_training(self,text):
+        self.step.input_text(self.title_input_field, text)
+        self.step.wait_for_element(self.input_fields_dropdown, 10)
+        self.step.click_element_containing_text(self.input_fields_dropdown, text)
+
+
+    def click_on_search(self):
+        self.step.click_on_element(self.filter_search)
 
 class RecruitmentAddCandidate:
     first_name = '#addCandidateForm_firstName'
@@ -257,3 +269,29 @@ class RecruitmentAddCandidate:
     def click_save(self):
         self.step.click_on_element(self.save_button)
         self.step.specified_element_is_not_present(self.loading_spinner)
+
+class TrainingAddCourse:
+     training_add_title_input_field = 'input[name="addCourse[title]"]'
+     coordinator_input_field = 'input[placeholder="Type for hints..."]'
+     coordinator_input_field_dropdown = 'div[class="ac_results"] li'
+     save_button = 'a[id="btnSaveCourse"]'
+     coordinator_input_field_mis = '#addCourse_coordinator_empName-error'
+
+     def __init__(self, step: StepHelper, wd: WebDriver):
+         self.step = step
+         self.wd = wd
+
+     def set_title(self,text):
+         self.step.input_text(self.training_add_title_input_field, text)
+
+     def set_coordinator(self,text):
+         self.step.input_text(self.coordinator_input_field, text)
+         self.step.wait_for_element(self.coordinator_input_field_dropdown, 5)
+         if self.step.specified_element_is_present(self.coordinator_input_field_mis, 5) == False:
+             self.step.click_element_containing_text(self.coordinator_input_field_dropdown, text)
+
+
+
+
+     def click_save(self):
+         self.step.click_on_element(self.save_button)

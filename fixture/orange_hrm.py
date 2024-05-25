@@ -32,7 +32,6 @@ class OrangeHrm:
         self.employeeManagement = EmployeeManagement(self.step, self.wd)
         self.training = Training(self.step, self.wd)
         self.reportAnalytics = ReportAnalytics(self.step, self.wd)
-        self.training = Training(self.step, self.wd)
         self.recruitment = Recruitment(self.step, self.wd)
 
     def openUrl(self, url="https://admin_portnov-trials712.orangehrmlive.com"):
