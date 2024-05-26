@@ -216,12 +216,15 @@ class PopUp:
 
 
 class TrainingFilter:
-    title_input_field = 'div[class="input-field row"] #searchCourse_title'
+    title_input_field = '#searchCourse_title'
     iframe = "#noncoreIframe"
     filter_courses_header = '.customized-modal-header h5'
     title_input_field_autocomplete_dropdowns = '.ac_results ul li'
     input_fields_dropdown = '.ac_results ul li'
     filter_search = 'a[id="searchBtn"]'
+    coordinator_input_field = 'input[type="text"][name*="coordinator"]'
+    coordinator_input_field_dropdown = '.ac_results ul li'
+
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -237,6 +240,10 @@ class TrainingFilter:
         self.step.wait_for_element(self.input_fields_dropdown, 10)
         self.step.click_element_containing_text(self.input_fields_dropdown, text)
 
+    def set_coordinator(self, text):
+        self.step.input_text(self.coordinator_input_field, text)
+        self.step.wait_for_element(self.coordinator_input_field_dropdown, 5)
+        self.step.click_element_containing_text(self.coordinator_input_field_dropdown, text)
 
     def click_on_search(self):
         self.step.click_on_element(self.filter_search)

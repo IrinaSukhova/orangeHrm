@@ -4,7 +4,9 @@ from dotenv import load_dotenv
 
 from fixture.employee_management import EmployeeManagement
 from fixture.hr_administration import HrAdministration
+from fixture.leave import Leave
 from fixture.pop_up import PopUp
+from fixture.recruitment_ats import RecruitmentAts
 from fixture.recruitment import Recruitment
 from fixture.report_and_analytics import ReportAnalytics
 from fixture.side_menu import SideMenu
@@ -33,6 +35,8 @@ class OrangeHrm:
         self.training = Training(self.step, self.wd)
         self.reportAnalytics = ReportAnalytics(self.step, self.wd)
         self.recruitment = Recruitment(self.step, self.wd)
+        self.recruitmentAts = RecruitmentAts(self.step, self.wd)
+        self.leave = Leave(self.step, self.wd)
 
     def openUrl(self, url="https://admin_portnov-trials712.orangehrmlive.com"):
         self.wd.get(url)
