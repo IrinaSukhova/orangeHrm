@@ -248,6 +248,8 @@ class TrainingFilter:
     def click_on_search(self):
         self.step.click_on_element(self.filter_search)
 
+
+
 class RecruitmentAddCandidate:
     first_name = '#addCandidateForm_firstName'
     last_name = '#addCandidateForm_lastName'
