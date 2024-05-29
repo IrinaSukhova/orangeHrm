@@ -3,8 +3,9 @@ import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-
+from fixture.calendar import Calendar, CalendarType
 from fixture.step import StepHelper
+
 
 class PopUp:
     user_name_field = '#user_name'
@@ -60,6 +61,7 @@ class PopUp:
         self.training_filter = TrainingFilter(step, wd)
         self.training_add_course = TrainingAddCourse(step, wd)
         self.recruitment_add_candidate = RecruitmentAddCandidate(step, wd)
+        self.recruitmentAts_filter = RecruitmentAtsFilter(step, wd)
 
     def set_username(self, text):
         self.step.click_on_element(self.user_name_field)
@@ -262,6 +264,7 @@ class RecruitmentAddCandidate:
         self.step = step
         self.wd = wd
 
+
     def set_first_name(self, text):
         self.step.input_text(self.first_name, text)
 
@@ -299,8 +302,25 @@ class TrainingAddCourse:
          if self.step.specified_element_is_present(self.coordinator_input_field_mis, 5) == False:
              self.step.click_element_containing_text(self.coordinator_input_field_dropdown, text)
 
-
-
-
      def click_save(self):
          self.step.click_on_element(self.save_button)
+
+
+class RecruitmentAtsFilter:
+    search_button = 'button[type="submit"]'
+    from_date_calendar = '(//div[@class="oxd-date-input-icon-wrapper"])[1]'
+    header_filter_candidates = 'h5[class="modal-title"]'
+
+    def __init__(self, step: StepHelper, wd: WebDriver):
+        self.step = step
+        self.wd = wd
+        self.calendar = Calendar(self.step, CalendarType.OXD)
+
+    def click_search_button(self):
+        self.step.click_on_element(self.search_button)
+
+    def click_date_applied_from(self):
+        self.step.click_on_element(self.from_date_calendar)
+
+    def wait_for_displayed(self):
+        self.step.wait_for_element(self.header_filter_candidates)
