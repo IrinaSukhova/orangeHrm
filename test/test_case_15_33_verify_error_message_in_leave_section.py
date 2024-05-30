@@ -5,7 +5,7 @@
 # Step 4:  Select some date far, far away in the future from the calendar for the 'From' field
 # Step 5:  Select some day in the future, in the far, far away future for the 'To' field from the calendar
 # Step 6:  Click on 'Search' button
-# Step 7:  Verify that message 'No records found' is displayed
+# Step 7:  Verify that message 'No records found' is displayed4
 import time
 
 def test_case_15_lesson33_verify_error_message_in_leave_section(app):
