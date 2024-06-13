@@ -16,7 +16,16 @@ class Attendance:
     employee_name_field = 'oxd-multiselect[items="employeesForMultiSelect"] input[autocomplete="off"]'
     employee_name_value = '//ul[@id="dropdown-multyselect"]//li//span[@class="multi-select-title"]'
     csv_button = 'button[data-icon="ohrm_file_csv"]'
-    message_download_csv = ''
+    table_present = '#pim_report_table'
+    input_supervisor_name = '#report_multiselect_supervisorfilter_supervisors input'
+    supervisor_dropdown_value = '#report_multiselect_supervisorfilter_supervisors ul'
+    input_job_title = '#report_multiselect_filter_job_title input'
+    job_title_dropdown_value = '#report_multiselect_filter_job_title span'
+    data_format = 'button[data-id="report_select_filter_data_format"]'
+    data_format_value = '#bs-select-4 span'
+    input_include = 'button[data-id="report_select_filter_include"]'
+    include_dropdown_value = '#bs-select-3 span'
+    checkbox = '.custom-control-label'
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -34,11 +43,9 @@ class Attendance:
                                              'status': 'td[ng-repeat="value in result track by $index"]:nth-child(8)' })
 
     def wait_page_load(self):
-        self.step.specified_element_is_not_present(self.spiner, 90)
+        self.step.specified_element_is_not_present(self.spiner, 20)
 
     def  get_list_of_headers(self):
-        self.step.specified_element_is_not_present(self.set_header)
-        time.sleep(3)
         return self.step.get_elements_texts(self.set_header)
 
     def new_pay_period(self, text):
@@ -62,5 +69,35 @@ class Attendance:
         if len(downloaded_files) == 0:
             raise Exception("No files were downloaded.")
 
-    def message_csv(self, text):
-        self.step.specified_element_is_present(self.message_download_csv,text)
+
+    def table_is_present(self):
+        self.step.specified_element_is_present(self.table_present, 20)
+
+    def enter_supervisor_name(self, text):
+        self.step.click_on_element(self.input_supervisor_name)
+        self.step.input_text(self.input_supervisor_name, text)
+        self.step.wait_for_element(self.input_supervisor_name)
+        time.sleep(1)
+        self.step.click_element_containing_text(self.supervisor_dropdown_value, text)
+
+    def set_job_title(self, text):
+        self.step.click_on_element(self.input_job_title)
+        self.step.input_text(self.input_job_title, text)
+        self.step.wait_for_element(self.input_job_title)
+        time.sleep(1)
+        self.step.click_element_containing_text(self.job_title_dropdown_value, text)
+
+    def set_data_format(self, text):
+        self.step.click_on_element(self.data_format)
+        time.sleep(1)
+        self.step.click_element_containing_text(self.data_format_value, text)
+
+    def set_include(self, text):
+        self.step.click_on_element(self.input_include)
+        self.step.click_element_containing_text(self.include_dropdown_value, text)
+
+    def click_checkbox(self):
+        self.step.click_on_element(self.checkbox)
+
+    def scroll_to_table_headers(self):
+        self.step.scroll_element_into_center(self.set_header)
