@@ -4,12 +4,18 @@ import os
 import shutil
 
 # Windows example: r'C:\Users\YOUR_USERNAME\allure-2.27.0\allure-2.27.0\bin\allure.bat'
-ALLURE_COMMAND_PATH = r'C:\Program Files\allure-2.27.0\allure-2.27.0\bin\allure.bat'
+
+if os.name == 'nt':  # Windows
+    ALLURE_COMMAND_PATH = r'C:\allure-2.27.0\bin\allure.bat'
+else:  # Assume Linux or macOS
+    ALLURE_COMMAND_PATH = 'allure'
+
 
 def clear_directory(directory):
     if os.path.exists(directory):
         shutil.rmtree(directory)
     os.makedirs(directory)
+
 
 def open_allure_report():
     report_dir = "allure-report"
@@ -17,11 +23,13 @@ def open_allure_report():
         os.makedirs(report_dir)
     subprocess.call([ALLURE_COMMAND_PATH, 'serve', 'allure-results'])
 
+
 def generate_allure_report():
     base_dir = os.path.abspath(os.path.dirname(__file__))
     results_dir = os.path.join(base_dir, "allure-results")
     report_dir = os.path.join(base_dir, "allure-report")
     subprocess.call([ALLURE_COMMAND_PATH, 'generate', results_dir, '-o', report_dir, '--clean'])
+
 
 def run_tests_and_generate_report(headless=False, parallel=False, group=None, test_name=None):
     base_dir = os.path.abspath(os.path.dirname(__file__))
@@ -47,9 +55,14 @@ def run_tests_and_generate_report(headless=False, parallel=False, group=None, te
     # pytest_cmd.append('-v')  # Add verbose output
 
     print("Executing command:", ' '.join(pytest_cmd))
-    subprocess.call(pytest_cmd)
+    result = subprocess.call(pytest_cmd)
+
+    if result != 0:
+        sys.exit(result)  # Exit with the same status code as pytest if tests fail
+
     if not test_name:
         generate_allure_report()
+
 
 if __name__ == '__main__':
     command = sys.argv[1] if len(sys.argv) > 1 else None
