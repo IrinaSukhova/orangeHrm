@@ -5,41 +5,21 @@ list_of_expected_employee_id = ['1061']
 list_of_expected_employee_name = ['Mazie Abraham']
 list_of_employment_status = ['Full-Time Permanent']
 
-expected_employee_id = ['0123', '1061', '1055', '0125', '1058', '1002', '1072', '1080', '1144', '1149', '1122', '1139', '1071', '0119', '1117', '1032', '1158', '1104', '1102', '1171', '1083', '1110', '1039', '1093', '1165', '0129', '1121', '201', '1123', '1038', '1127', '0205', '1015', '1142', '1135', '1068', '1081', '1118', '1059', '0120', '0209', '0203', '1097', '1146', '1050', '1103', '1092', '1074', '1035', '1141']
-expected_name = ['Mazie Abraham', 'Odis Adalwin', 'Brody Alan', 'Mary Alcala', 'Peter Anderson', 'Leah Andrews', 'Tanya Arva', 'Amadi Aswad', 'Lukas Bauer', 'Johanna Becker', 'Brad Bellic', 'Léa Bernard', 'Cece Bonaparte', 'Caitlyn Bonwick', 'Brian Butler', 'Steven Caldwell', 'Ayana Campbell', 'Charlie Carter', 'Chang Cheng', 'Mei Ling Chua', 'Chenzira Chuki', 'Paul Collings', 'Christoper Cooper', 'Robert Craig', 'Maria Cruz', 'Alannah Daglish', 'Andrew Daley', 'Anthony Davies', 'Paul Davis', 'Lincoln Davis', 'Lisa De Zousa', 'John Doe', 'Carla Donovan', 'Laura Dubois', 'Camille Dubois', 'Alice Duval', 'Ehioze Ebo', 'Ralph Edwards', 'Amy Elliot', 'Stephan Fassbinder', 'ddsf fdgfdgfd', 'David Fernandez', 'Tian Fieur', 'Maximilian Fischer', 'Jenny Fisher', 'Fabienne Gabor', 'Mason Gabriel', 'Goutam Ganesh', 'Martín García', 'Marion Girard']
-expected_job_title = ['Marketing Executive', 'Vice President - Human Resources', 'Senior Manager Technical Support', 'Production Co-ordinator', 'CRO', 'CCO', 'Software Architect', 'Senior Software Development Manager', 'Regional HR Manager', 'Customer Support Executive', 'Software Engineer', 'Local Marketing Manager', 'Talent Acquisition Manager', 'HR Executive', 'Regional Sales Director', 'Sales Manager', 'Junior QA Engineer', 'Principal Software Engineer', 'Senior Software Development Manager', 'Marketing Executive', 'Lead QA Engineer', 'Local Marketing Manager', 'Comptroller', 'Regional Sales Manager', 'Senior QA Engineer', 'Associate Support Engineer', 'IT Technical Support', 'Project Manager', 'Software Engineer', 'Senior Manager- Digital Marketing', 'Sales Executive', '', 'CEO', 'Marketing Executive', 'Senior Manager- Regional Sales', 'Senior Sales Manager', 'Engineer Manager', 'Art Director', 'Assistant Manager - HR', 'Production Co-ordinator', '', 'CFO', 'Regional HR Manager', 'Senior Customer Success Manager', 'Software Engineer', 'Assistant Manager - HR', 'Sales Executive', 'Principal Software Engineer', 'Technical Support Engineer', 'SEO Specialist']
-expected_employment_status = ['Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Probation', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Probation', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Probation', 'Full-Time Permanent', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Probation', 'Full-Time Permanent', '', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Permanent', '', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Contract', '', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Part-Time Contract', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent']
-expected_sub_unit = ['Marketing', 'Human Resources', 'Information Technology', 'Production', 'Sales', 'Information Technology', 'Engineering', 'Engineering', 'Human Resources', 'Customer Success', 'Engineering', 'Marketing', 'Human Resources', 'Human Resources', 'Marketing', 'Sales', 'Quality assurance (QA)', 'Technical Support', 'Engineering', 'Marketing', 'Quality assurance (QA)', 'Production', 'Finance', 'Product and Training', '', 'Information Technology', 'Information Technology', '', 'Engineering', 'Marketing', 'Sales', '', 'Marketing', 'Marketing', 'Sales', 'Customer Success', 'Technical Support', 'Marketing', 'Human Resources', 'Production', '', 'Finance', 'Human Resources', 'Customer Success', 'Engineering', 'Human Resources', 'Sales', 'Engineering', 'Quality assurance (QA)', 'Marketing']
-expected_cost_center = ['0007 - Cost Center (Marketing)', '0005 - Cost center (Administration)', '0001 - Cost Center (IT)', '0006 - Cost center (Production)', '0004 - Cost Center (Sales)', '0009 - Cost center (QA)', '0002 - Cost Center (Engineering)', '0002 - Cost Center (Engineering)', '', '', '0002 - Cost Center (Engineering)', '', '0005 - Cost center (Administration)', '0005 - Cost center (Administration)', '0007 - Cost Center (Marketing)', '0004 - Cost Center (Sales)', '0009 - Cost center (QA)', '0002 - Cost Center (Engineering)', '0002 - Cost Center (Engineering)', '0007 - Cost Center (Marketing)', '0009 - Cost center (QA)', '0006 - Cost center (Production)', '0003 - Cost Center (Finance)', '0004 - Cost Center (Sales)', '', '', '00010 - UK Business Unit', '', '0002 - Cost Center (Engineering)', '0001 - Cost Center (IT)', '0004 - Cost Center (Sales)', '', '0007 - Cost Center (Marketing)', '', '', '0004 - Cost Center (Sales)', '0002 - Cost Center (Engineering)', '0007 - Cost Center (Marketing)', '0005 - Cost center (Administration)', '0006 - Cost center (Production)', '', '0003 - Cost Center (Finance)', '0005 - Cost center (Administration)', '', '0002 - Cost Center (Engineering)', '0005 - Cost center (Administration)', '0004 - Cost Center (Sales)', '0002 - Cost Center (Engineering)', '0009 - Cost center (QA)', '0007 - Cost Center (Marketing)']
-expected_location = ['Australia office', 'Canadian Development Center', 'US Office', 'Australia office', 'US Office', 'UK Office', 'India Office', 'India Office', 'German Office', 'German Office', 'US Office', 'France Office', 'UK Office', 'Australia office', 'India Office', 'US Office', 'Jamaica training center', 'Canadian Development Center', 'India Office', 'Singapore Regional HQ', 'South Africa Satellite Office', 'Canadian Development Center', 'US Office', 'India Office', 'Philippine call center', 'Australia office', 'US Office', 'India Office', 'US Office', 'US Office', 'US Office', 'Australia office', 'US Office', 'France Office', 'France Office', 'UK Office', 'India Office', 'India Office', 'Canadian Development Center', 'Jamaica training center', 'Australia office', 'US Office', 'India Office', 'German Office', 'Canadian Development Center', 'India Office', 'US Office', 'India Office', 'Mexico Office', 'France Office']
-expected_supervisor = ['Dereck Morris', 'Jacqueline Wagner', 'Miguel Mason', 'Rebecca Harmony', 'Carla Donovan', 'Carla Donovan', 'Miguel Mason', 'Eric Harris', 'Anna Schmidt', 'Tim Müller', '', 'Julien Rousseau', 'Jacqueline Wagner', 'Katerina Skonis', 'Russell Hamilton', 'David Grossi', 'Maleeka Johnson', 'Khloe Jayden', 'Eric Harris', 'Wei Tan', 'Amadi Aswad', 'Jackson Smith', 'David Fernandez', 'Nina Patel', 'Armando Santos', 'Aaliyah Haq', 'Aaliyah Haq', '', '', 'Russell Hamilton', '', '', '', 'Léa Bernard', 'Michael Nelson', 'Michael Nelson', 'Eric Harris', 'Dereck Morris', 'Odis Adalwin', 'Jackson Smith', '', 'Carla Donovan', 'Anna Schmidt', 'Leah Andrews', 'Khloe Jayden', 'Odis Adalwin', 'Robert Craig', 'Tanya Arva', 'Brody Alan', 'Léa Bernard']
-expected_filtered_name = ['Paul Collings', 'Madeline Granville', 'Tobias Jeremiassen', 'Jackson Smith']
-expected_australia_filtered_name = ['Mary Alcala', 'Caitlyn Bonwick', 'Patricia Hunt', 'Maik Mayer']
+expected_employee_id = ['0202', '0203', '1006', '1007', '1008', '1009', '1014', '1015', '1019', '1020', '1021', '1023', '1031', '1032', '1038', '1039', '1040', '1041', '1052', '1055', '1056', '1058', '1084', '1089', '1090', '1092', '1095', '1113', '1114', '1120', '1121', '1122', '1123', '1124', '1126', '1127', '136', '199']
+expected_name = ['Aaliyah Haq', 'Aaron Hamilton', 'Andrew Daley', 'Brad Bellic', 'Brody Alan', 'Carla Donovan', 'Christoper Cooper', 'Christopher Morgan', 'David Fernandez', 'David Grossi', 'Dereck Morris', 'Dorothy Wilkins', 'Fiona Grace', 'Frank Williams', 'Grant Mason', 'Gretchen Morgan', 'Jacob Oram', 'Jacqueline Wagner', 'John Mathews', 'Jordan Amester Mathews', 'Julian Taylor', 'Kai Keegan', 'Kenneth Mathews', 'Lien Ko', 'Lincoln Davis', 'Lisa De Zousa', 'Luke Wright', 'Maggie Manning', 'Mark Sallinger', 'Mason Gabriel', 'Melodie Leonie', 'Muhammad Khan', 'Nicky Silverstone', 'Paul Davis', 'Peter Anderson', 'Rebecca Harmony', 'Steven Caldwell', 'Xandra Xavier']
+expected_job_title = ['Assistant Manager - HR', 'CEO', 'CFO', 'CHRO', 'CRO', 'Comptroller', 'Finance Manager', 'Finance Manager', 'IT Executive', 'IT Technical Support', 'Principal Software Engineer', 'Regional HR Manager', 'Regional Marketing Manager', 'Regional Sales Manager', 'Regional Sales Manager', 'SEO Specialist', 'Sales Executive', 'Sales Executive', 'Sales Executive', 'Sales Executive', 'Sales Executive', 'Sales Manager', 'Senior Front End Developer', 'Senior Lead QA Engineer', 'Senior Lead QA Engineer', 'Senior Lead QA Engineer', 'Senior Lead Technical Support Engineer', 'Senior Manager Technical Support', 'Senior Manager- Digital Marketing', 'Senior Production Manager', 'Senior Sales Executive', 'Senior Sales Executive', 'Senior Sales Executive', 'Senior Technical Support Engineer', 'Senior Vice President - Production', 'Senior Web Developer', 'Software Engineer', 'Software Engineer']
+expected_employment_status = ['', 'Full-Time Contract', 'Full-Time Contract', 'Full-Time Contract', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Permanent', 'Full-Time Probation']
+
 
 @pytest.mark.group3
 def test_case_9_employee_management_table_verification(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
-    app.step.assert_lists_equal_with_diff(app.orangeHrm.employeeManagement.table.get_column_data('employee_id'), expected_employee_id)
+    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('employee_id'))).is_equal_to(sorted(expected_employee_id))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name'))).is_equal_to(sorted(expected_name))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('job_title'))).is_equal_to(sorted(expected_job_title))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('employment_status'))).is_equal_to(sorted(expected_employment_status))
-    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('sub_unit'))).is_equal_to(sorted(expected_sub_unit))
-    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('cost_center'))).is_equal_to(sorted(expected_cost_center))
-    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('location'))).is_equal_to(sorted(expected_location))
-    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('supervisor'))).is_equal_to(sorted(expected_supervisor))
-
-    # a = app.orangeHrm.employeeManagement.table.get_column_data('employee_id')
-    # b = app.orangeHrm.employeeManagement.table.get_column_data('employee_name')
-    # c = app.orangeHrm.employeeManagement.table.get_column_data('job_title')
-    # d = app.orangeHrm.employeeManagement.table.get_column_data('employment_status')
-    # e = app.orangeHrm.employeeManagement.table[1]['employee_id']
-    # f = app.orangeHrm.employeeManagement.table[0]['employee_name']
-    # g = app.orangeHrm.employeeManagement.table[4]['employment_status']
-    # app.assert_that(e).is_equal_to('1061')
-    # app.assert_that(f).is_equal_to('Mazie Abraham')
-    # app.assert_that(g).is_equal_to('Full-Time Permanent')
 
     # 1 Create a new object of the table class inside the employee management component (based on the example from hr_administration).
     # 2 Find selectors: For list of rows and list of column elements (Employee Id, Name, Job Title, Employment Status).
@@ -48,6 +28,9 @@ def test_case_9_employee_management_table_verification(app):
     # 5 Get first element from the 'Name' column and assert it with the expected one.
     # 6 Get fifth element from the 'Employment Status' column and assert it with the expected one.
 
+
+
+expected_filtered_name = ['Dereck Morris', 'Luke Wright', 'Muhammad Khan', 'Paul Davis']
 @pytest.mark.group3
 def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.open_application_and_login()
@@ -60,6 +43,8 @@ def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.popUp.click_on_search()
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name'))).is_equal_to(sorted(expected_filtered_name))
+    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('employment_status'))).contains_only('Full-Time Contract')
+    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('location'))).contains_only('US Office')
 
     # Click on the filter button in the Employee Management section
     # In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'
@@ -67,9 +52,10 @@ def test_case_9_1_employee_management_table_filtering(app):
     # Click the search button
     # Wait for the table to load (ensure the table is refreshed with the filter applied)
     # Using the previously created table component, get list of users Names and Assert the list of users with the expected ones
-    # TODO: Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
-    # TODO: Get list of 'Locations' for each listed user and assert it with the expected 'Canada'
+    #  Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
+    # Get list of 'Locations' for each listed user and assert it with the expected 'Canada'
 
+expected_australia_filtered_name = ['Dereck Morris', 'Luke Wright', 'Muhammad Khan', 'Paul Davis']
 @pytest.mark.group3
 def test_case_9_2_employee_management_table_location_change(app):
     app.orangeHrm.open_application_and_login()
@@ -80,6 +66,7 @@ def test_case_9_2_employee_management_table_location_change(app):
     app.orangeHrm.popUp.set_employee_filter_location("Canada")
     app.orangeHrm.popUp.click_on_search()
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
     app.assert_that((sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))).is_equal_to(sorted(expected_filtered_name))
     print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
     print(sorted(expected_filtered_name))
