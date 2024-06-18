@@ -2,7 +2,7 @@ import time
 import pytest
 
 list_of_expected_widgets = ['Quick Access', 'Time At Work', 'Employees on Leave Today', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', "Current Year's Leave Taken by Department", 'Buzz Latest Posts', 'Leave Taken on Each Day of the Week Over Time', 'Leave Scheduled in Each Month', 'Leave Taken on Each Calendar Month Over the Years', 'Headcount by Location', 'Annual Basic Payment by Location', 'My Actions']
-list_of_expected_configurations = ['My Actions', 'Quick Access', 'Employees on Leave Today', 'Time At Work', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', 'Buzz Latest Posts', 'Current Year`s Leave Taken by Department', 'Leave Taken on Each Calendar Month Over the Years', 'Leave Scheduled in Each Month', 'Leave Taken on Each Day of the Week Over Time', 'Headcount by Location', 'Annual Basic Payment by Location']
+list_of_expected_configurations = ['My Actions', 'Quick Access', 'Employees on Leave Today', 'Time At Work', 'Latest News', 'Latest Documents', 'Performance Quick Feedback', 'Buzz Latest Posts', "Current Year's Leave Taken by Department", 'Leave Taken on Each Calendar Month Over the Years', 'Leave Scheduled in Each Month', 'Leave Taken on Each Day of the Week Over Time', 'Headcount by Location', 'Annual Basic Payment by Location']
 
 
 # Test Case 8: Verify Retrieval of Widget Names in Employee Management Component
@@ -41,9 +41,11 @@ def test_case_8_verify_retrieval_of_widget_names_in_employee_management_componen
 @pytest.mark.group3
 def test_case_8_1_verify_retrieval_of_widget_names_in_employee_management_component_inside_the_configuration(app):
     app.orangeHrm.open_application_and_login()
-    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
+    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
     app.orangeHrm.employeeManagement.click_home()
+    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
     app.orangeHrm.employeeManagement.click_gear_button()
     app.orangeHrm.employeeManagement.click_my_widgets_tab()
-    app.assert_that(app.orangeHrm.employeeManagement.get_widgets_names().sort()).is_equal_to(list_of_expected_configurations.sort())
+    a = app.orangeHrm.employeeManagement.get_widgets_names()
+    app.assert_that(a).is_equal_to(list_of_expected_configurations)

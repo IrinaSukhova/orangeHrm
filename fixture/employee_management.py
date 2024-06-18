@@ -10,7 +10,7 @@ class EmployeeManagement:
     my_widgets_tab = "//span[@class='nav-link']"
     list_of_widgets_header_texts = ".widget-header span:last-child"
     list_of_configurations_texts = "//a[@ng-if='!menu.children && !!menu.uiSref && maxLevels <= 0']"
-    list_widgets_names = '//span[@class= "oxd-switch-label"]'
+    list_widgets_names = '.configuration-tab .oxd-switch-label'
     first_table_row = "tbody tr:nth-child(1)"
     list_employee_button = "//a[@class='top-level-menu-item active']"
     filter_button = '*[data-tooltip="Filter"]'
@@ -54,6 +54,7 @@ class EmployeeManagement:
         self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)
 
     def get_widgets_names(self):
+        self.step.wait_for_element(self.list_widgets_names, 20)
         return self.step.get_elements_texts(self.list_widgets_names)
 
     def wait_for_table1(self):

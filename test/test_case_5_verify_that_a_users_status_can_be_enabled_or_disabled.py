@@ -14,6 +14,7 @@ import pytest
 def test_case_5_verify_that_a_users_status_can_be_enabled_or_disabled(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
+    app.orangeHrm.hrAdministration.wait_for_table()
     app.orangeHrm.hrAdministration.click_on_filter()
     app.orangeHrm.popUp.set_user_name_filter('ghrtjtj')
     app.orangeHrm.popUp.click_on_search()

@@ -15,7 +15,7 @@ class PopUp:
     confirm_password_field = '#confirmpassword'
     save_button = '#modal-save-button'
     user_exists_error_massage = "//span[text()='Already exists']"
-    user_name_filter_field = '//input[@id="systemuser_uname_filter"]'
+    user_name_filter_field = '#systemuser_uname_filter'
     filter_popup_table = '//div[@class="modal modal-fixed-footer open"]//h4[text()="Filter Users"]'
     filter_search_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Search"]'
     pass_required_message = '//input[@id="password"]/following::span[text()="Required"]'
@@ -203,7 +203,7 @@ class PopUp:
     def set_hr_administration_drop_downs(self, user_name=None, employee_name=None, ess_role=None, admin_role=None,
                                          supervisor_role=None, status=None, location=None):
         if user_name is not None:
-            self.set_username(user_name)
+            self.set_user_name_filter(user_name)
         if employee_name is not None:
             self.set_employee_name_filter(employee_name)
         if ess_role is not None:
