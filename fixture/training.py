@@ -12,7 +12,7 @@ class Training:
     save_message = '//div[@class="toast-message"]'
     go_to_courses_button = 'a[class="tooltipped go-back-menu-item"]'
     filter_spinner = '#preloader .gap-patch'
-
+    table_present = '#TestList'
 
 
     def __init__(self, step: StepHelper, wd: WebDriver):
@@ -47,3 +47,5 @@ class Training:
     def wait_filtered_table(self):
         self.step.specified_element_is_not_present(self.filter_spinner,20)
 
+    def table_is_present(self):
+        self.step.specified_element_is_present(self.table_present, 10)

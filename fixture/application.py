@@ -45,7 +45,7 @@ class Application:
         chrome_options.add_experimental_option("prefs", prefs)
 
         self.wd = webdriver.Chrome(service=service, options=chrome_options)
-        # self.wd.set_window_size(1920, 1080)  # Optionally setting window size; consider if necessary
+        self.wd.set_window_size(1920, 1080)  # Optionally setting window size; consider if necessary
 
         # Setup other components
         self.assert_that = assert_that

@@ -245,7 +245,7 @@ class TrainingFilter:
 
     def set_coordinator(self, text):
         self.step.input_text(self.coordinator_input_field, text)
-        self.step.wait_for_element(self.coordinator_input_field_dropdown, 5)
+        self.step.wait_for_element(self.coordinator_input_field_dropdown, 10)
         self.step.click_element_containing_text(self.coordinator_input_field_dropdown, text)
 
     def click_on_search(self):
