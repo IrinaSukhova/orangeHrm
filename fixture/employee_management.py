@@ -13,8 +13,8 @@ class EmployeeManagement:
     list_widgets_names = '.configuration-tab .oxd-switch-label'
     first_table_row = "tbody tr:nth-child(1)"
     list_employee_button = "//a[@class='top-level-menu-item active']"
-    filter_button = '*[data-tooltip="Filter"]'
-    employee_management_table_loading_spinner = '#loading-bar .bar .peg'  #23
+    filter_button = '//i[text()="oxd_filter"]'
+    employee_management_table_loading_spinner = '#loading-bar .bar .peg'
     add_folder_button = "i[class='oxd-svg-icon oxd-svg-icon--extra-large']"
 
     def __init__(self, step: StepHelper, wd: WebDriver):
@@ -48,7 +48,7 @@ class EmployeeManagement:
         return self.step.get_elements_texts(self.list_of_widgets_header_texts)
 
     def click_on_filter(self):
-        self.step.click_on_element(self.filter_button, 1)
+        self.step.click_on_element(self.filter_button, 10)
 
     def wait_for_loading_bar_gone(self):
         self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)

@@ -193,7 +193,7 @@ class PopUp:
         self.step.wait_for_element(self.status_input_field_employee, 5)
         self.step.click_on_element(self.status_input_field_employee)
         if self.step.get_element_attribute_value(self.status_input_field_employee, "class") == "select-dropdown active":
-            time.sleep(4)
+            time.sleep(1)
             self.step.click_element_containing_text(self.list_of_drop_down_values, text)
 
     def set_employee_filter_location(self, text):
