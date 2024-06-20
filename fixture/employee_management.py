@@ -13,7 +13,7 @@ class EmployeeManagement:
     list_widgets_names = '.configuration-tab .oxd-switch-label'
     first_table_row = "tbody tr:nth-child(1)"
     list_employee_button = "//a[@class='top-level-menu-item active']"
-    filter_button = '//i[text()="oxd_filter"]'
+    filter_button = '//i[text()="oxd_filter"]'  ##
     employee_management_table_loading_spinner = '#loading-bar .bar .peg'
     add_folder_button = "i[class='oxd-svg-icon oxd-svg-icon--extra-large']"
 
