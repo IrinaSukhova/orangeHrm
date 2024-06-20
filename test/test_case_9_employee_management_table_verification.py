@@ -35,7 +35,7 @@ expected_filtered_name = ['Jackson Smith', 'Madeline Granville', 'Paul Collings'
 def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
-    app.orangeHrm.employeeManagement.wait_for_table1()
+    app.orangeHrm.employeeManagement.wait_for_table_reload()
     app.orangeHrm.employeeManagement.click_on_filter()
     app.orangeHrm.popUp.set_employment_status("Full-Time Contract")
     app.orangeHrm.popUp.set_employee_filter_location("Canada")
@@ -59,7 +59,7 @@ expected_australia_filtered_name = ['Caitlyn Bonwick', 'Maik Mayer', 'Mary Alcal
 def test_case_9_2_employee_management_table_location_change(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
-    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    app.orangeHrm.employeeManagement.wait_for_table_reload()
     app.orangeHrm.employeeManagement.click_on_filter()
     app.orangeHrm.popUp.set_employment_status("Full-Time Contract")
     app.orangeHrm.popUp.set_employee_filter_location("Canada")

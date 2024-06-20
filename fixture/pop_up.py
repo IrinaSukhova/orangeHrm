@@ -17,7 +17,7 @@ class PopUp:
     user_exists_error_massage = "//span[text()='Already exists']"
     user_name_filter_field = '#systemuser_uname_filter'
     filter_popup_table = '//div[@class="modal modal-fixed-footer open"]//h4[text()="Filter Users"]'
-    filter_search_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Search"]'
+    filter_search_button = '//a[text()="Search"]'
     pass_required_message = '//input[@id="password"]/following::span[text()="Required"]'
     confirm_pass_required_message = '//input[@id="confirmpassword"]/following::span[text()="Required"]'
     pass_length_message = '//input[@id="password"]/following::span[text()="Your password should have at least 8 characters."]'
@@ -101,7 +101,7 @@ class PopUp:
         return self.step.get_element_text(self.user_exists_error_massage)
 
     def click_on_search(self):
-        self.step.click_on_element(self.filter_search_button)
+        self.step.click_on_element(self.filter_search_button, True)
 
     def get_strength_indicator_text(self):
         self.step.wait_for_element(self.pass_strength_message, 30)
@@ -192,8 +192,9 @@ class PopUp:
     def set_employment_status(self, text):
         self.step.wait_for_element(self.status_input_field_employee, 5)
         self.step.click_on_element(self.status_input_field_employee)
-        time.sleep(1)
-        self.step.click_element_by_text(self.list_of_drop_down_values, text)
+        if self.step.get_element_attribute_value(self.status_input_field_employee, "class") == "select-dropdown active":
+            time.sleep(4)
+            self.step.click_element_containing_text(self.list_of_drop_down_values, text)
 
     def set_employee_filter_location(self, text):
         self.step.specified_element_is_present(self.location_input_field_employee, 5)
