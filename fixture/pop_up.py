@@ -190,15 +190,16 @@ class PopUp:
         self.step.specified_element_is_not_present(self.filter_popup_table)
 
     def set_employment_status(self, text):
+        self.step.wait_for_element(self.status_input_field_employee, 5)
         self.step.click_on_element(self.status_input_field_employee)
         time.sleep(1)
         self.step.click_element_by_text(self.list_of_drop_down_values, text)
 
     def set_employee_filter_location(self, text):
+        self.step.wait_for_element(self.location_input_field_employee, 10)
         self.step.click_on_element(self.location_input_field_employee)
-        if self.step.get_element_attribute_value(self.location_input_field_employee,"class") == "select-dropdown active":
-           time.sleep(1)
-           self.step.click_element_containing_text(self.location_dropdown_employee_values, text)
+        time.sleep(1)
+        self.step.click_element_by_text(self.location_dropdown_employee_values, text)
 
     def set_hr_administration_drop_downs(self, user_name=None, employee_name=None, ess_role=None, admin_role=None,
                                          supervisor_role=None, status=None, location=None):

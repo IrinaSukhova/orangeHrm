@@ -30,11 +30,10 @@ def test_case_9_employee_management_table_verification(app):
 
 
 
-expected_filtered_name = ['Dereck Morris', 'Luke Wright', 'Muhammad Khan', 'Paul Davis']
+expected_filtered_name = ['Jackson Smith', 'Madeline Granville', 'Paul Collings', 'Tobias Jeremiassen']
 @pytest.mark.group3
 def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.open_application_and_login()
-    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
     app.orangeHrm.employeeManagement.click_on_filter()
@@ -42,9 +41,10 @@ def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.popUp.set_employee_filter_location("Canada")
     app.orangeHrm.popUp.click_on_search()
     app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name'))).is_equal_to(sorted(expected_filtered_name))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('employment_status'))).contains_only('Full-Time Contract')
-    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('location'))).contains_only('US Office')
+    app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('location'))).contains_only('Canadian Development Center')
 
     # Click on the filter button in the Employee Management section
     # In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'

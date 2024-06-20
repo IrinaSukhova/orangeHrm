@@ -2,6 +2,7 @@ import os
 import shutil
 import random
 import string
+from datetime import datetime, timedelta
 
 
 class Utils:
@@ -40,3 +41,28 @@ class Utils:
         if os.path.exists(download_path):
             shutil.rmtree(download_path)
         os.makedirs(download_path)
+
+    @staticmethod
+    def generate_random_date():
+        start_date = datetime(2023, 1, 1)
+        end_date = datetime(2024, 5, 13)
+        days_diff = (end_date - start_date).days
+        random_days = random.randint(0, days_diff)
+        random_date = start_date + timedelta(days=random_days)
+        return random_date.strftime("%Y-%m-%d")
+
+    @staticmethod
+    def compare_lists_and_print(list1, list2):
+        set1 = set(list1)
+        set2 = set(list2)
+        only_in_list1 = set1 - set2
+        only_in_list2 = set2 - set1
+        common_items = set1 & set2
+        print("Items only in list1:", list(only_in_list1))
+        print("Items only in list2:", list(only_in_list2))
+        print("Common items:", list(common_items))
+        return {
+            "only_in_list1": list(only_in_list1),
+            "only_in_list2": list(only_in_list2),
+            "common_items": list(common_items)
+        }

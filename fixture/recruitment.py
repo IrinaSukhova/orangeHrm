@@ -12,6 +12,8 @@ class Recruitment:
     search_field = 'input[data-test="autocompleteSelect"]'
     searching_text = "//div[text()=Searching...']"
     list_of_found_search_values = 'div[role="listbox"] div[role="option"]'
+    message = '//div[contains(@class, "oxd-toast-content")]//p[2]'
+
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -36,3 +38,7 @@ class Recruitment:
         self.step.wait_for_element(self.searching_text, 5)
         self.step.specified_element_is_not_present(self.searching_text, 6)
         self.step.click_element_containing_text(self.list_of_found_search_values, text)
+
+    def get_action_message(self):
+        self.step.wait_for_element(self.message, 10)
+        return self.step.get_element_text(self.message)
