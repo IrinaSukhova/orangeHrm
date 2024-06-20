@@ -49,7 +49,7 @@ class PopUp:
     location_input_field_employee = '//label[text()="Location"]/preceding-sibling::div//input'
     status_input_field_employee = '//label[text()="Employment Status"]/preceding-sibling::div//input[@value="All"]'
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
-    location_dropdown_employee_values = 'ul[id^="select-options"][style*="display: block"] li span'            #'ul[id^="select-options"][style*="display: block"] li span'
+    location_dropdown_employee_values = 'ul[id^="select-options"][style*="display: block"] li'            #'ul[id^="select-options"][style*="display: block"] li span'
     employee_name_filter_dropdown = '.angucomplete-title'
 
     input_report_name_field = 'input[placeholder="Enter Folder Name"]'
@@ -196,10 +196,10 @@ class PopUp:
         self.step.click_element_by_text(self.list_of_drop_down_values, text)
 
     def set_employee_filter_location(self, text):
-        self.step.wait_for_element(self.location_input_field_employee, 10)
+        self.step.specified_element_is_present(self.location_input_field_employee, 5)
         self.step.click_on_element(self.location_input_field_employee)
         time.sleep(1)
-        self.step.click_element_by_text(self.location_dropdown_employee_values, text)
+        self.step.click_element_containing_text(self.location_dropdown_employee_values, text)
 
     def set_hr_administration_drop_downs(self, user_name=None, employee_name=None, ess_role=None, admin_role=None,
                                          supervisor_role=None, status=None, location=None):

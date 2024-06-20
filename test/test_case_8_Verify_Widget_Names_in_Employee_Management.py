@@ -48,4 +48,4 @@ def test_case_8_1_verify_retrieval_of_widget_names_in_employee_management_compon
     app.orangeHrm.employeeManagement.click_gear_button()
     app.orangeHrm.employeeManagement.click_my_widgets_tab()
     a = app.orangeHrm.employeeManagement.get_widgets_names()
-    app.assert_that(sorted(a)).is_equal_to(list_of_expected_configurations)
+    app.assert_that(sorted(a)).is_equal_to(sorted(list_of_expected_configurations))

@@ -65,3 +65,7 @@ class EmployeeManagement:
 
     def wait_for_loading_bar_gone(self):
         self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)
+
+    def wait_for_table_reload(self):
+        self.step.wait_for_element(self.employee_management_table_loading_spinner, 10)
+        self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 40)

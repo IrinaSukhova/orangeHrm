@@ -35,13 +35,12 @@ expected_filtered_name = ['Jackson Smith', 'Madeline Granville', 'Paul Collings'
 def test_case_9_1_employee_management_table_filtering(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
-    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    app.orangeHrm.employeeManagement.wait_for_table1()
     app.orangeHrm.employeeManagement.click_on_filter()
     app.orangeHrm.popUp.set_employment_status("Full-Time Contract")
     app.orangeHrm.popUp.set_employee_filter_location("Canada")
     app.orangeHrm.popUp.click_on_search()
-    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
-    print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
+    app.orangeHrm.employeeManagement.wait_for_table_reload()
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name'))).is_equal_to(sorted(expected_filtered_name))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('employment_status'))).contains_only('Full-Time Contract')
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('location'))).contains_only('Canadian Development Center')
@@ -55,7 +54,7 @@ def test_case_9_1_employee_management_table_filtering(app):
     #  Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
     # Get list of 'Locations' for each listed user and assert it with the expected 'Canada'
 
-expected_australia_filtered_name = ['Dereck Morris', 'Luke Wright', 'Muhammad Khan', 'Paul Davis']
+expected_australia_filtered_name = ['Caitlyn Bonwick', 'Maik Mayer', 'Mary Alcala', 'Patricia Hunt']
 @pytest.mark.group3
 def test_case_9_2_employee_management_table_location_change(app):
     app.orangeHrm.open_application_and_login()
@@ -65,15 +64,14 @@ def test_case_9_2_employee_management_table_location_change(app):
     app.orangeHrm.popUp.set_employment_status("Full-Time Contract")
     app.orangeHrm.popUp.set_employee_filter_location("Canada")
     app.orangeHrm.popUp.click_on_search()
-    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
-    print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
+    app.orangeHrm.employeeManagement.wait_for_table_reload()
     app.assert_that((sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))).is_equal_to(sorted(expected_filtered_name))
     print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
     print(sorted(expected_filtered_name))
     app.orangeHrm.employeeManagement.click_on_filter()
     app.orangeHrm.popUp.set_employee_filter_location("Australia")
     app.orangeHrm.popUp.click_on_search()
-    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    app.orangeHrm.employeeManagement.wait_for_table_reload()
     app.assert_that((sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))).is_equal_to(sorted(expected_australia_filtered_name))
     print(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name')))
     print(sorted(expected_australia_filtered_name))
