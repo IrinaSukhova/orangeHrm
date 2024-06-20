@@ -14,7 +14,7 @@ class EmployeeManagement:
     first_table_row = "tbody tr:nth-child(1)"
     list_employee_button = "//a[@class='top-level-menu-item active']"
     filter_button = '*[data-tooltip="Filter"]'
-    employee_management_table_loading_spinner = '#loading-bar .bar .peg'
+    employee_management_table_loading_spinner = '#loading-bar .bar .peg'  #23
     add_folder_button = "i[class='oxd-svg-icon oxd-svg-icon--extra-large']"
 
     def __init__(self, step: StepHelper, wd: WebDriver):
