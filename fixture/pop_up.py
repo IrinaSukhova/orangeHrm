@@ -45,7 +45,7 @@ class PopUp:
     list_of_found_employee_names = '#employee_name_filter_dropdown div[ng-repeat="result in results"] span[class="angucomplete-title"]'
     employee_name_filter_dropdown_warnings = '//div[@id="employee_name_filter_dropdown" and @class="angucomplete-dropdown"]/div[2]'
 
-    # POpup_employee_filtre
+    # POpup_employee_filtrey
     location_input_field_employee = '//label[text()="Location"]/preceding-sibling::div//input'
     status_input_field_employee = '//label[text()="Employment Status"]/preceding-sibling::div//input[@value="All"]'
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'

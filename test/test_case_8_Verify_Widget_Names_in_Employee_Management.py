@@ -35,7 +35,7 @@ def test_case_8_verify_retrieval_of_widget_names_in_employee_management_componen
 # 5. Click on gear button.
 # 6. In side menu click on "My Widgets".
 # 7. Get list of widgets names.
-# 8. Verify that the list of retrieved widget names matches the expected list.
+# 8. Verify that the list of retrieved widget names matches the expected list.t
 # Expected Result:
 # The 'get_widget_names' method should return an accurate list of widget names from the side menu. Then assert it with the expected one.
 @pytest.mark.group3
