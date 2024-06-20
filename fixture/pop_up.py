@@ -49,7 +49,7 @@ class PopUp:
     location_input_field_employee = '//label[text()="Location"]/preceding-sibling::div//input'
     status_input_field_employee = '//label[text()="Employment Status"]/preceding-sibling::div//input[@value="All"]'
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
-    location_dropdown_employee_values = 'ul[id^="select-options"][style*="display: block"] li'            #f'ul[id^="select-options"][style*="display: block"] li span'
+    location_dropdown_employee_values = 'ul[id^="select-options"][style*="display: block"] li'            #fr'ul[id^="select-options"][style*="display: block"] li span'
     employee_name_filter_dropdown = '.angucomplete-title'
 
     input_report_name_field = 'input[placeholder="Enter Folder Name"]'

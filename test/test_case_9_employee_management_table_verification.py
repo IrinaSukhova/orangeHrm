@@ -49,7 +49,7 @@ def test_case_9_1_employee_management_table_filtering(app):
     # In the filter pop-up, set 'Employment Status' to 'Full-Time Contract'
     # Set 'Location' to 'Canada'v
     # Click the search button
-    # Wait for the table to load (ensure the table is refreshed with the filter applied)f
+    # Wait for the table to load (ensure the table is refreshed with the filter applied)fs
     # Using the previously created table component, get list of users Names and Assert the list of users with the expected ones
     #  Get list of 'Employment Statuses' and assert it with the expected 'Full-Time Contract'
     # Get list of 'Locations' for each listed user and assert it with the expected 'Canada'
