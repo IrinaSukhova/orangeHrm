@@ -54,6 +54,7 @@ class PopUp:
 
     input_report_name_field = 'input[placeholder="Enter Folder Name"]'
     save_folder_name = 'button[data-test="submitFolderButton"]'
+    employee_filter_table_header = "//h4[text()='Filter Employees By']"
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -218,6 +219,11 @@ class PopUp:
             self.set_status_input_dropdown(status)
         if location is not None:
             self.set_location_input_dropdown(location)
+
+    def get_filter_employee_table_header(self):
+        self.step.wait_for_element(self.employee_filter_table_header)
+        time.sleep(1)
+        return self.step.get_element_text(self.employee_filter_table_header)
 
 
 class TrainingFilter:

@@ -14,6 +14,7 @@ class EmployeeManagement:
     first_table_row = "tbody tr:nth-child(1)"
     list_employee_button = "//a[@class='top-level-menu-item active']"
     filter_button = '//i[text()="oxd_filter"]'  #
+    employee_management_loading_spinner = '(//div[@class="oxd-circle-loader"])[last()]'
     employee_management_table_loading_spinner = '#loading-bar .bar .peg'
     add_folder_button = "i[class='oxd-svg-icon oxd-svg-icon--extra-large']"
 
@@ -39,6 +40,8 @@ class EmployeeManagement:
         self.step.click_element_by_text(self.list_employee_button, 'Employee List')
 
     def click_gear_button(self):
+        self.step.specified_element_is_not_present(self.employee_management_loading_spinner, 15)
+        self.step.wait_for_element(self.gear_button,10)
         self.step.click_on_element(self.gear_button)
 
     def click_my_widgets_tab(self):
@@ -51,10 +54,11 @@ class EmployeeManagement:
         self.step.click_on_element(self.filter_button, 10)
 
     def wait_for_loading_bar_gone(self):
-        self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)
+        self.step.wait_for_element(self.employee_management_loading_spinner)
+        self.step.specified_element_is_not_present(self.employee_management_loading_spinner, 20)
 
     def get_widgets_names(self):
-        self.step.wait_for_element(self.list_widgets_names, 20)
+        self.step.wait_for_element(self.list_widgets_names, 10)
         return self.step.get_elements_texts(self.list_widgets_names)
 
     def wait_for_table1(self):
@@ -63,8 +67,6 @@ class EmployeeManagement:
     def click_on_filter_button(self):
         self.step.click_on_element(self.filter_button, 1)
 
-    def wait_for_loading_bar_gone(self):
-        self.step.specified_element_is_not_present(self.employee_management_table_loading_spinner, 10)
 
     def wait_for_table_reload(self):
         self.step.wait_for_element(self.employee_management_table_loading_spinner, 10)
