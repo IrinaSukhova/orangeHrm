@@ -15,7 +15,7 @@ expected_employment_status = ['', 'Full-Time Contract', 'Full-Time Contract', 'F
 def test_case_9_employee_management_table_verification(app):
     app.orangeHrm.open_application_and_login()
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
-    app.orangeHrm.employeeManagement.wait_for_loading_bar_gone()
+    app.orangeHrm.employeeManagement.wait_for_table_reload()
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('employee_id'))).is_equal_to(sorted(expected_employee_id))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('name'))).is_equal_to(sorted(expected_name))
     app.assert_that(sorted(app.orangeHrm.employeeManagement.table.get_column_data('job_title'))).is_equal_to(sorted(expected_job_title))
