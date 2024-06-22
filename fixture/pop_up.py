@@ -259,6 +259,9 @@ class TrainingFilter:
     def click_on_search(self):
         self.step.click_on_element(self.filter_search)
 
+    def get_filter_courses_header_text(self):
+        self.step.wait_for_element(self.filter_courses_header, 5)
+        return self.step.get_element_text(self.filter_courses_header)
 
 
 class RecruitmentAddCandidate:
@@ -297,6 +300,8 @@ class TrainingAddCourse:
      coordinator_input_field_dropdown = 'div[class="ac_results"] li'
      save_button = 'a[id="btnSaveCourse"]'
      coordinator_input_field_mis = '#addCourse_coordinator_empName-error'
+
+
 
      def __init__(self, step: StepHelper, wd: WebDriver):
          self.step = step

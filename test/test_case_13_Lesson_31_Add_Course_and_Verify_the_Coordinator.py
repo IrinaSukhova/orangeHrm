@@ -16,7 +16,7 @@
 
 from helpers.utils import Utils
 
-title_random = Utils.generate_random_string()
+title_random = Utils.generate_random_string(10)
 
 def test_case_13_lesson_31_Add_Course_and_Verify_the_Coordinator(app):
     app.orangeHrm.open_application_and_login()
@@ -24,23 +24,22 @@ def test_case_13_lesson_31_Add_Course_and_Verify_the_Coordinator(app):
     app.orangeHrm.training.wait_for_page_loading()
     app.orangeHrm.step.switch_to_iframe(app.orangeHrm.training.iframe)
     app.orangeHrm.training.click_on_filter_button()
+    app.assert_that(app.orangeHrm.popUp.training_filter.get_filter_courses_header_text()).is_equal_to("Filter Courses")
     app.orangeHrm.popUp.training_filter.set_coordinator("Brody Alan")
     app.orangeHrm.popUp.training_filter.click_on_search()
-    app.orangeHrm.training.wait_for_page_loading()
-    app.orangeHrm.training.table_is_present()
+    app.orangeHrm.training.wait_filtered_table()
     list_before_add_course = app.orangeHrm.training.table.get_column_data('title')
     app.orangeHrm.training.click_on_add_course_button()
     app.orangeHrm.training.wait_for_page_loading()
     app.orangeHrm.popUp.training_add_course.set_title(title_random)
     app.orangeHrm.popUp.training_add_course.set_coordinator("Brody Alan")
     app.orangeHrm.popUp.training_add_course.click_save()
-    list_containing_new_course = list_before_add_course + [title_random]
     app.orangeHrm.training.click_on_go_to_courses_button()
     app.orangeHrm.training.wait_for_page_loading()
     app.orangeHrm.training.click_on_filter_button()
     app.orangeHrm.popUp.training_filter.set_coordinator("Brody Alan")
     app.orangeHrm.popUp.training_filter.click_on_search()
-    app.orangeHrm.training.wait_for_page_loading()
-    list_after_add_event = app.orangeHrm.training.table.get_column_data('title')
-    app.assert_that(sorted(list_after_add_event)).is_equal_to(sorted(list_containing_new_course))
+    app.orangeHrm.training.wait_filtered_table()
+    list_containing_new_course = list_before_add_course + [title_random]
+    app.assert_that(sorted(app.orangeHrm.training.table.get_column_data('title'))).is_equal_to(sorted(list_containing_new_course))
 

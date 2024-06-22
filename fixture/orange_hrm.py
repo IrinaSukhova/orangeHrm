@@ -25,6 +25,7 @@ class OrangeHrm:
     username_error_message = 'span[id="txtUsername-error"]'
     password_error_message = 'span[id="txtPassword-error"]'
 
+
     def __init__(self, app):
         self.app = app
         self.step: StepHelper = self.app.step
@@ -74,3 +75,4 @@ class OrangeHrm:
         self.openUrl()
         self.login_to_the_application()
         self.app.assert_that(self.app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+
